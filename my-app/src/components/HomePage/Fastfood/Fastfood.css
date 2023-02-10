@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+#Fastfoodsection{
+    background-image: url('https://themewagon.github.io/coffee1/images/bg_4.jpg');
+    background-attachment: fixed;
+    height: auto;
+    padding-bottom: 6rem;
+}
+.blog-head{
+padding-top: 6rem;
+text-align: center;
+}
+.blog-head h2{
+font-weight: 700;
+font-family: 'Josefin Sans', sans-serif;
+
+font-size: 40px;
+line-height: 56px;
+text-transform: uppercase;
+color: white;
+}
+.blog-head p{
+    font-size: 15px;
+    width: 49vw;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    line-height: 25px;
+    color: rgb(128, 128, 128);
+
+}
+.cards6{
+    padding-top: 5rem;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+.card6{
+}
+.card6 img{
+    width: 100%;
+    height: 270px;
+}
+.card6 img:hover{
+   cursor: pointer;
+}
+.card6 #datep{
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 25px;
+    color: rgb(128, 128, 128);
+    padding-top: 1.2rem;
+
+}
+.card6 h3{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: -.6rem;
+    color: white;
+}
+.card6 h3:hover{
+    color: rgb(199, 155, 99);
+    cursor: pointer;
+    transition: .4s;
+}
+.card6 #aboutp{
+    font-size: 13.5px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(128, 128, 128);
+    padding-top: 1.2rem;
+    width: 21rem;
+    margin-top: -1rem;
+}
+#commenticon{
+    color: #bfbfbf;
+    font-size: 15px;
+    margin-left: .4rem;
+    margin-top: -.3rem;
+
+}
+@media only screen and (max-width: 700px) {
+
+    .blog-head p{
+
+        width: 60vw;
+
+    }
+}

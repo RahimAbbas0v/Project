@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+
+.discoversection{
+    background-image: url("https://themewagon.github.io/coffee1/images/bg_4.jpg");
+    background-position: center center;
+    background-attachment: fixed;
+    height: auto;
+    padding-bottom: 13rem;
+    
+}
+#discovercontainer{
+    display: flex;
+}
+#left{
+    width: 45%;
+    text-align: right;
+    height: 65vh;
+    padding-top: 15rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 2rem;
+}
+#left span{
+    text-align: right;
+
+    font-family: 'Great Vibes', cursive;
+    font-weight:400 ;
+    line-height: 30px;
+    font-size:50px ;
+    letter-spacing: 0px;
+    color:rgb(196, 155, 99) ;
+}
+#left h2{
+    font-family: 'Josefin Sans', sans-serif;
+
+    font-weight:700 ;
+    line-height: 40px;
+    font-size:47px ;
+    letter-spacing: 0px;
+    color:white;
+    padding-bottom: 1.3rem;
+}
+#left p{
+    text-align: right;
+
+    font-family: 'Poppins', sans-serif;
+    font-weight:300 ;
+    line-height: 27px;
+    font-size:1vw ;
+    letter-spacing: 0px;
+    color:rgb(128, 128, 128);
+
+}
+#left button{
+    color: #c49b63;
+    background-color: transparent;
+    border: 1px solid #c49b63;
+    height: 3rem;
+    width: 9rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400px;
+    margin-top: 1.4rem;
+    font-size: 13px;
+}
+#left button:hover{
+    color: white;
+    background-color: #c49b63;
+    transition: 0.6s;
+}
+
+#right{
+    padding-right: 3rem;
+    margin: auto;
+    width: 47%;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    padding-top: 6rem;
+}
+#right .img1 img{
+    
+    object-fit: cover;
+    object-position: center;
+    margin-top: 1rem;
+    cursor: pointer;
+    height: 230px;
+}
+#right .img2 img{margin-left: 1rem;
+    cursor: pointer;
+    margin-top: 2.5rem;
+    height: 230px;
+}
+#right .img3 img{
+    cursor: pointer;
+    margin-top: 1rem;
+    height: 230px;
+}
+#right .img4 img{margin-left: 1rem;
+    cursor: pointer;
+    margin-top: 2.5rem;
+    height: 230px;
+}
+@media only screen and (max-width: 1100px) {
+
+    #left p{
+        font-size: 1.4vw;
+    }
+}
+@media only screen and (max-width: 940px) {
+
+    #discovercontainer{
+        
+        display: block;
+    }
+    #left{
+        height: auto;
+        padding-top:8rem ;
+        padding-bottom: 0;
+        width: 100%;
+        text-align: left;
+    }
+    #left p{
+        text-align: left;
+        font-size: 2.2vw;
+    }
+    #right{
+    padding-right: 0;
+
+        width: 80%;
+        margin: auto;
+        grid-template-columns: repeat(2,1fr);
+        gap: 0;
+        padding-top: 9rem;
+    }
+    #right .img1{
+        
+        object-position:  center center;
+        height: 200px;
+        margin: auto;
+    }
+    #right .img2{
+        object-position:  center center;
+        height: 200px;
+        margin: auto;
+    }
+    #right .img3{
+        object-position:  center center;
+        height: 200px;
+        margin: auto;
+    }
+    #right .img4{
+        object-position:  center center;
+        height: 200px;
+        margin: auto;
+    }
+    #right .img3 img{
+        margin: auto;
+        margin-left: 0;
+        margin-top: 4rem;
+    }
+    #right .img4 img{
+        object-position:  center center;
+        height: 200px;
+        margin: auto;
+        margin-top: 5.7rem;
+
+    }
+}
+@media only screen and (max-width: 850px) {
+
+    #left p{
+        font-size: 1.8vw;
+    }
+}
+@media only screen and (max-width: 790px) {
+
+    #left p{
+        font-size: 1.7vw;
+    }
+}
+@media only screen and (max-width: 600px) {
+
+            #discovercontainer{
+                
+                display: block;
+                width: 80%;
+            }
+    #left p{
+        font-size: 2.8vw;
+    }
+    #right{
+        position: relative;
+    
+            width: 100%;
+            margin: auto;
+            grid-template-columns: repeat(1,1fr);
+            gap: 0;
+            
+            padding: 0;
+            margin: 0;
+        }
+        #right .img1{object-fit: cover;
+            text-align: center;
+            object-position:  center center;
+        }
+        #right .img2{ margin-right: 2rem;
+            object-fit: cover;
+            text-align: center;
+            object-position:  center center;
+            margin-top: 4rem;
+        }
+        #right .img3{
+            object-fit: cover;
+            text-align: center;
+            object-position:  center center;
+            margin-top: 4rem;
+
+        }
+        #right .img4{
+            object-fit: cover;
+            text-align: center;
+            object-position:  center center;
+            margin: auto;
+        }
+        #right .img3 img{
+            position: absolute;
+            max-width: 100%;
+            width: 125%;
+            object-fit: cover;
+            object-position: center center;
+            top: 10%;
+            left: 3%;
+            border-radius: 3px;
+            margin-top: 32.6rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.9);
+        }
+        #right .img4 img{
+            position: absolute;
+            max-width: 100%;
+            width: 125%;
+            object-fit: cover;
+            object-position: center center;
+            top: 10%;
+            left: 3%;
+            border-radius: 3px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.9);
+            margin-top: 48.7rem;
+        }
+        #right .img1 img{
+            position: absolute;
+            max-width: 100%;
+            width: 125%;
+            object-fit: cover;
+            object-position: center center;
+            top: 10%;
+            left: 3%;
+            border-radius: 3px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.9);
+        }
+        #right .img2 img{
+            position: absolute;
+            max-width: 100%;
+            width: 125%;
+            object-fit: cover;
+            object-position: center center;
+            top: 10%;
+            left: -1%;
+            border-radius: 3px;
+            margin-top:16.8rem;
+           
+            box-shadow: 0 3px 6px rgba(0,0,0,0.9);
+    
+        }
+}
+@media only screen and (max-width: 376px) {
+
+    #left p{
+        font-size: 3vw;
+    }
+}
+@media only screen and (max-width: 361px) {
+
+    #left p{
+        font-size: 3vw;
+    }
+}

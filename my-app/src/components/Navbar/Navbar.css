@@ -1,0 +1,143 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Poppins&display=swap');
+*{
+    font-family: 'Josefin Sans', sans-serif;
+}
+.navbar{
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    padding-bottom: 13px;
+    width: 100%;
+background-color: transparent;
+position: fixed;
+z-index: 2;
+}
+.navbar.active{
+    transition: 1s;
+    background-color: black;
+    padding-top: 25px;
+    padding-bottom: 6px;
+}
+.navbar #link{
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    line-height: 20px;
+}
+.navbar #link:hover{
+color: #c49b63;
+transition: 0.4s;
+}
+.menu{
+    margin-right: 6rem;
+}
+.list{
+    display: flex;
+    gap: 36px;
+    list-style: none;
+}
+.companyName{
+    text-align: center;
+margin-left: 90px;
+
+}
+.companyName h2{
+    font-weight: 300;
+    font-size: 22px;
+    color: white;
+    line-height:15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0;
+}
+
+#nav-dropdown-white-example{
+    font-weight: 400;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 400;
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;
+    line-height: 20px;
+}
+#nav-dropdown-white-example:hover{
+    color: #c49b63;
+transition: 0.4s;
+}
+.companyName p{
+    font-weight: 400;
+    font-size: 12px;
+    color: white;
+    line-height:5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+#home #link{
+    color: #c49b63;
+}
+#shopicon{
+    color: white;
+    cursor: pointer;
+}
+#toggler,
+.navbar label{
+    display: none;
+}
+#compsup{
+    background: #f8b500;
+    padding:0.4rem;
+    border-radius: 40%;
+}
+@media only screen and (max-width: 1000px) {
+    .navbar label{
+        padding-right: 1rem;
+        padding-bottom: 1rem;
+    }
+    .navbar{
+        background-color: black;
+        justify-content: space-between;
+        padding-top: 22px;
+        padding-bottom: 3px;
+        position: sticky;
+        top: 0.001;
+        z-index: 1;
+    }
+    .companyName{
+        padding: 5px;
+        margin: 0;
+    }
+    .menu{
+        
+        max-height: 0;
+        width: 100%;
+        overflow: hidden;
+
+    }
+    .list{
+        flex-direction: column;
+        text-align: left;
+
+        padding: 20px;
+    }
+    .navbar label{
+        display: inline-flex;
+        cursor: pointer;
+        align-items: center;
+        color: white;
+    }
+    #toggler:checked ~.menu{
+        max-height: 100%;
+        text-align: left;
+    }
+    #compsup{
+        display: none;
+    }
+  }
