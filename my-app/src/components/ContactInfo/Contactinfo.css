@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+#Contactinfo{
+    background-image: url('https://themewagon.github.io/coffee1/images/bg_4.jpg');
+    background-attachment: fixed;
+    height: auto;
+    padding-bottom: 8rem;
+}
+#contactcontainer{
+    padding-top: 4rem;
+    display: flex;
+    justify-content: space-between;
+
+    align-items: center;
+    width: 80%;
+    gap: 70px;
+}
+.leftinfo{
+    width: 39%;
+}
+.leftinfo h3{
+    font-family: 'Josefin Sans', sans-serif;
+    color: white;
+    font-size:27px ;
+    font-weight:400 ;
+    letter-spacing: 0;
+    line-height:33px ;
+}
+.leftinfo #addressp{
+    font-family: 'Poppins', sans-serif;
+    width: 85%;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 27px;
+    color: rgb(128, 128, 128);
+}
+.leftinfo span{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 27px;
+    color: white;
+}
+.leftinfo p{
+    padding-top: 1rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 27px;
+    color: rgb(196, 155, 99);
+}
+#formdiv2{
+    padding-top: 3rem;
+    width: 61%;
+    margin: auto;
+    text-align: left;
+}
+.textarea{
+    display: flex;
+    justify-content: baseline;align-items: center;
+   margin-top: .5rem;
+   width: 95%;
+
+}
+.textarea input{
+    
+    height: 8.3rem;
+    width: 94%;
+    background-color: transparent;
+    border-right: hidden;
+    border-radius: 0;
+    border-top: hidden;
+    border-left: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+}
+.textarea input:focus{
+    background-color: transparent;
+    border-color: rgb(196, 155, 99);
+    outline: none;
+}
+.textarea input::placeholder{
+    color: white;
+    padding-left: .5rem;
+    padding-top: .4rem;
+    font-size: 16.3px;
+}
+
+#reservform2{
+    padding: 1.5rem;
+    height: auto;
+    margin: auto;
+    background-color: transparent;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    
+}
+#reservform2 h3{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    color: white;
+    line-height: 22px;
+}
+#firstinputs{
+    display: flex;
+    gap: 40px;
+}
+#firstinputs input:focus{
+    border-color: rgb(196, 155, 99);
+    outline: none;
+    transition: .4s;
+}
+#firstinputs input::placeholder{
+    font-size: 16.3px;
+
+    color: white;
+}
+#reservform3 input{
+margin: .5rem;
+}
+#firstinputs input{
+    height: 3.3rem;
+    width: 40%;
+    background-color: transparent;
+    outline: hidden;
+    border: none;
+    color: white;
+    border-top: hidden;
+    border-right: hidden;
+    border-radius: 0;
+    border-left: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+#subject input:focus{
+    outline: none;
+    border-color: rgb(196, 155, 99);
+}
+#subject input{
+    height: 3.3rem;
+    width: 89%;
+    background-color: transparent;
+    outline: hidden;
+    border-color: #c49b63;
+    border-top: hidden;
+    border-right: hidden;
+    border-radius: 0;
+    border-left: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+#subject input::placeholder{
+    color: white;
+    font-size: 16.3px;
+
+}
+#formdiv2 button{
+    font-size: 13px;
+    margin-top: 1rem;
+    height: 3.3rem;
+    font-family: 'Poppins', sans-serif;
+    background-color: #c49b63;
+    margin-left: .5rem;
+    width: 12rem;
+}
+#formdiv2 button:hover{
+    background-color: black;
+    border-color: #c49b63;
+    color: white;
+    transition: .7s;
+} 
+#gmap_canvas{
+    width: 100%;
+    height: 50vh;
+}
+@media only screen and (max-width: 1500px) {
+    #formdiv2{
+        padding-top: 0;
+    }
+  }
+  @media only screen and (max-width: 862px) {
+    #contactcontainer{
+        display: block;
+    }
+    .leftinfo{
+        width: 100%;
+    }
+    #formdiv2{
+        text-align: left;
+        margin: 0;
+        width: 100%;
+    }
+    #firstinputs input{
+       width: 100%;
+    }
+    #reservform3{
+       width: 100%;
+    }
+    .textarea textarea{
+        margin-top: 1rem;
+    }
+    .textarea{
+        margin-right: 1rem;
+    }
+  }

@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+
+#detailSection{
+    background-image: url('https://themewagon.github.io/coffee1/images/bg_4.jpg');
+    background-attachment: fixed;
+    height: auto;padding-top: 7.5rem;
+    padding-bottom: 4rem;
+}
+#detailcontainer1{
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    width: 85%;
+    gap: 2%;
+}
+.leftimg{
+    width: 40%;
+}
+.leftimg img{height: 600px;
+    width: 450px;
+    height: 500px;
+   
+}
+.rightinfocard{
+    width: 44%;
+}
+.rightinfocard h3{
+font-weight: 400;
+font-size: 34px;
+line-height: 45px;
+color: white;
+font-family: 'Josefin Sans', sans-serif;
+
+}
+.rightinfocard span{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    line-height: 54px;
+    font-size: 30px;
+    color: rgb(248, 181, 0);
+}
+.rightinfocard p{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    line-height: 27px;
+    font-size: 15px;
+    color: rgb(128, 128, 128);
+}
+.rightinfocard select{
+    margin-top: 1rem;
+    width: 9rem;
+    background-color: transparent;
+    height: 54px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #c49b63 ;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+
+}
+.rightinfocard button{
+    margin-top: 1rem;
+    background-color: #c49b63;
+    width:10.7rem;
+    height: 3.5rem;
+}
+.rightinfocard button:hover{
+    background-color: black;
+    border-color: #c49b63;
+    color: white;
+    transition: .7s;
+}
+.countdiv{
+    margin-top: 1rem;
+    display: flex;
+    gap:8px;
+}
+.countdiv span{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c49b63 ;
+    font-size: 18px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 3.3rem;
+    width: 3.3rem;
+}
+@media only screen and (max-width: 1400px) {
+    #detailcontainer1{
+        gap: 9%;
+    }
+  
+}
+@media only screen and (max-width: 1200px) {
+    #detailcontainer1{
+        gap: 15%;
+    }
+  
+}
+@media only screen and (max-width: 1100px) {
+    #detailcontainer1{
+        gap: 19%;
+    }
+  
+}
+@media only screen and (max-width: 1008px) {
+    #detailcontainer1{
+        display: block;
+        gap: 0;
+    }
+    .leftimg{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .leftimg img{
+        width: 100%;
+        height: auto;
+    }
+    .rightinfocard{
+        margin-top: 4rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+  
+}
+@media only screen and (max-width: 650px) {
+    .rightinfocard h3{
+        font-size: 1.6rem;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .rightinfocard h3{
+        font-size: 1.3rem;
+    }
+}

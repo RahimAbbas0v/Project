@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import MenuIcon from "@mui/icons-material/Menu";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "./Navbar.css";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-function Navbar() {
+import {useSelector,useDispatch} from "react-redux/es/exports";
+function Navbar({history}) {
+  const dispatch=useDispatch()
+  const count=useSelector(state=>state.basket.count)
   const [color, setColor] = useState(false);
   const bgchange = () => {
     if (window.scrollY >= 90) {
@@ -15,6 +19,8 @@ function Navbar() {
     }
   };
   window.addEventListener("scroll", bgchange);
+
+  const {pathname} = useLocation();
   return (
     <>
       <nav className={color ? "navbar active" : "navbar"}>
@@ -30,28 +36,47 @@ function Navbar() {
         <div className="menu">
           <ul className="list">
             <li id="home">
-              <Link to="/" id="link">
+              <Link
+                to="/"
+                id="link"
+              >
                 HOME
               </Link>
             </li>
-            <li>
-              <Link to="/" id="link">
+            <li >
+              <Link  
+                to="/menu"
+                id="link"
+                
+              >
                 MENU
               </Link>
             </li>
             <li>
-              <Link to="/" id="link">
+              <Link
+                to="/services"
+                id="link"
+                
+              >
                 SERVICES
               </Link>
             </li>
             <li>
-              <Link to="/" id="link">
+              <Link
+                to="/blog"
+                id="link"
+                
+              >
                 BLOG
               </Link>
             </li>
 
             <li>
-              <Link to="/" id="link">
+              <Link
+                to="/about"
+                id="link"
+              
+              >
                 ABOUT
               </Link>
             </li>
@@ -61,28 +86,42 @@ function Navbar() {
                 title="Shop"
                 menuVariant="white"
               >
-                <NavDropdown.Item href="#action/3.1">Shop</NavDropdown.Item>
+                <NavDropdown.Item
+                  href="#action/3.1"
+ 
+                >
+                 <Link to="shop" id="link2">Shop</Link> 
+                </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.2">
                   Single Product
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">Cart</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.3"><Link to="/cart" id="link2">Cart</Link></NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.4">Checkout</NavDropdown.Item>
               </NavDropdown>
             </li>
             <li>
-              <Link to="/" id="link">
+              <Link
+                to="/contact"
+                id="link"
+               
+              >
                 CONTACT
               </Link>
             </li>
-            <div>
+            <div style={{display:"flex",gap:"20px"}}>
               <span id="shopicon">
-                <ShoppingCartIcon />
-                <sup id="compsup">5</sup>
+              <Link to="/cart" id="link">
+                <ShoppingCartIcon  id="navicon" /><sup>{count}</sup></Link> 
+              </span>
+              <span id="shopicon">
+                <Link to="/login" id="link">
+               <AccountCircleIcon id="navicon"/></Link>
               </span>
             </div>
           </ul>
         </div>
       </nav>
+      
     </>
   );
 }

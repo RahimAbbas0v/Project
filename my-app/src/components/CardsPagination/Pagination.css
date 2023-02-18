@@ -1,0 +1,119 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+  .pageNumbers {
+   
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 1.2rem;
+  }
+.pageNumbers li{
+  border-radius: 50%;
+  height: 3.5rem;width:3.5rem;margin: 1rem;
+  color: black;
+  background-color: white; display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  .pageNumbers li {
+    padding: 10px;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+  .pageNumbers li:hover{
+   color: black;
+   transition: .5s;
+  }
+  .pageNumbers li.active {
+    background-color: white;
+    color: red;
+  }
+  
+  .pageNumbers li button {
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+  }
+  .pageNumbers li button:hover {
+    color: red;
+    transition: .5s;
+   
+  }
+  .pageNumbers li button:focus {
+    outline: none;
+  }
+  
+  .loadmore {
+    padding: 1rem;
+    background-color: transparent;
+    color: white;
+    font-size: 1.2rem;
+    border: 1px solid white;
+    cursor: pointer;
+  }
+#paginationpart{
+text-align: center;    padding-bottom: .1rem;
+margin: auto;
+justify-content: center;
+}
+#Fastfoodsection2{
+    background-image: url('https://themewagon.github.io/coffee1/images/bg_4.jpg');
+    background-attachment: fixed;
+    height: auto;
+
+}
+.cards7{
+    padding-top: 5rem;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: center;
+}
+.card7 img{
+    width: 340px;
+    height: 280px;
+}
+.card7 img:hover{
+   cursor: pointer;
+}
+.card7 #datep{
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    line-height: 25px;
+    color: rgb(128, 128, 128);
+    padding-top: 1.2rem;
+
+}
+.card7 h3{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    margin-top: -.6rem;
+    color: white;
+}
+.card7 h3:hover{
+    color: rgb(199, 155, 99);
+    cursor: pointer;
+    transition: .4s;
+}
+.card7 #aboutp{
+    font-size: 13.5px;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(128, 128, 128);
+    padding-top: 1.2rem;
+    width: 21rem;
+    margin-top: -1rem;
+}
+#commenticon{
+    color: #bfbfbf;
+    font-size: 15px;
+    margin-left: .4rem;
+    margin-top: -.3rem;
+
+}

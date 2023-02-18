@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from './components/HomePage/Header.jsx/Header'
+import Footer from './components/Footer/Footer'
 import  Navbar from "./components/Navbar/Navbar"
-
+import ScrollToTopOnMount from './components/ScrollTop/ScrollTop'
+import ScrollToTop from './components/ScrollTop/ScrollTop'
 function App() {
+  
   return (
     <>
+
+    <ScrollToTopOnMount/>
     <Navbar/>
     <Outlet/>
+    <Footer/>
     </>
   )
 }

@@ -1,0 +1,262 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+
+#infosection{
+    display: flex;
+    padding-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: black;
+    height: auto;
+}
+#inforcontainer{
+
+    flex-wrap: wrap;
+    padding-top: 2%;
+    padding-left: 14%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.left{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    position: static;
+}
+#icon{
+    color: #c49b63;
+    font-size: 20px;
+    margin-right: 1rem;
+}
+.phone{position: relative;
+    padding-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.phone h3{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: white;
+    line-height: 22px;
+    transform: none;
+    letter-spacing: 0;
+    text-decoration: none;
+}
+.phone p{
+    font-family: 'Poppins', sans-serif;
+    width: 15rem;
+    font-weight: 300;
+    font-size: 15px;
+    color:rgb(128, 128, 128);
+    line-height: 27px;
+    transform: none;
+    letter-spacing: 0;
+    text-decoration: none;
+}
+
+.address{position: relative;
+    padding-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.address h3{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: white;
+    line-height: 22px;
+    transform: none;
+    letter-spacing: 0;
+    text-decoration: none;
+}
+.address p{
+    font-family: 'Poppins', sans-serif;
+    width: 15rem;
+    font-weight: 300;
+    font-size: 15px;
+    color:rgb(128, 128, 128);
+    line-height: 27px;
+    transform: none;
+    letter-spacing: 0;
+    text-decoration: none;
+}
+.time{    position: relative;
+    padding-top: 3%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.time h3{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    color: white;
+    line-height: 22px;
+    transform: none;
+    letter-spacing: 0;
+    text-decoration: none;
+}
+.time p{
+    font-family: 'Poppins', sans-serif;
+    width: 15rem;
+    font-weight: 300;
+    font-size: 15px;
+    color:rgb(128, 128, 128);
+    line-height: 27px;
+    transform: none;
+    letter-spacing: 0;
+    text-decoration: none;
+}
+#reservform{
+    height: auto;
+    position: absolute;
+    left: 67.7%;
+    top: 105%;
+    margin-top: -9.5rem;
+    object-fit: cover;
+    object-position: center;
+    justify-content: right;
+    z-index: 1;
+    padding: 3%;
+    background-color: #c49b63;
+    width: 32%;
+}
+.submit{
+    padding-top: 1.7rem;
+    gap: 30px;
+    display: flex;
+}
+.submit input{
+    height: 3.3rem;
+    width: 43%;
+    background-color: transparent;
+    border-right: hidden;
+    border-radius: 0;
+    border-top: hidden;
+    border-left: hidden;
+    border-bottom: 1px solid white;
+
+}
+.submit input:focus{
+    background-color: transparent;
+    outline: none;
+}
+.submit input::placeholder{
+    color: white;
+    font-size: 14px;
+}
+
+.submit button{
+    background-color: white;
+    border: none;
+    color: black;
+    width: 47%;
+}
+.submit button:hover{
+    background-color: black;
+    
+    color: white;
+    transition: .7s;
+} 
+
+#reservform h3{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 400;
+    font-size: 16.9px;
+    color: white;
+    line-height: 22px;
+}
+#name{
+    display: flex;
+    gap: 36.6px;
+}
+#name input:focus{
+    outline: none;
+}
+#name input::placeholder{
+    font-size: 14px;
+    color: white;
+}
+#name input{
+    height: 3.3rem;
+    width: 44%;
+    background-color: transparent;
+    outline: hidden;
+    border: none;
+    color: white;
+    border-top: hidden;
+    border-right: hidden;
+    border-radius: 0;
+    border-left: hidden;
+    border-bottom: 1px solid white;
+}
+#times{
+    display: flex;
+    gap: 20.6px;
+}
+#times input:focus{
+    outline: none;
+}
+#times select:focus{
+    outline: none;
+    
+}
+#times input{
+    height: 3.3rem;
+    width: 30%;
+    background-color: transparent;
+    outline: hidden;
+    border-color: #c49b63;
+    border-top: hidden;
+    border-right: hidden;
+    border-radius: 0;
+    border-left: hidden;
+    border-bottom: 1px solid white;
+}
+#times input::placeholder{
+    color: white;
+    font-size: 14px;
+}
+#times select{
+    height: 3.3rem;width: 27%;
+    background-color: transparent;
+    outline: hidden;
+    border-color: #c49b63;
+    border-top: hidden;
+    border-right: hidden;
+    border-radius: 0;
+    border-left: hidden;
+    border-bottom: 1px solid white;overflow-y: auto;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+ }
+#times select::placeholder{
+    color: white;
+    font-size: 14px;
+} 
+ @media only screen and (max-width: 1521px) {
+    #inforcontainer{
+
+        padding-left: 5%;
+    }
+     }
+
+
+     @media only screen and (max-width: 1210px) {
+         #infosection{
+    
+            display: block;
+            padding-bottom: 0;
+        }
+        #inforcontainer{
+            position: static;
+            padding-left: 0%;
+            display: block;
+        }
+        #reservform{
+            position: static;
+            width: 100%;
+            margin-top: 5%;
+        }
+         }

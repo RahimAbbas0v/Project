@@ -3,97 +3,51 @@ const dotenv=require("dotenv")
 const cors=require("cors")
 const bodyParser=require("body-parser")
 const mongoose=require("mongoose")
+const bcrypt=require("bcryptjs")
+const jwt = require("jsonwebtoken");
+const nodemailer = require('nodemailer');
 
+const JWT_SECRET =
+  "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
 dotenv.config()
 const {Schema}=mongoose
-const CoffeSchema = new Schema({
-    ProductName:{type:String,required:true},
-    ProductInfo:{type:String,required:true},
-    ProductPrice:{type:Number,required:true},
+
+const imgsSchema = new Schema({
     ProductUrl:{type:String,required:true},
 
 },{
     timestamps:true
 })
 
-const Coffes=mongoose.model('Coffes',CoffeSchema)
+const imgs=mongoose.model('imgs',imgsSchema)
 
 const app=express()
 app.use(cors())
 app.use(bodyParser.json())
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
 app.get("/",(req,res)=>{
     res.send("<h1>Admin Panel</h1>")
 })
 
-app.get("/Coffes",(req,res)=>{
-    Coffes.find({},(err,docs)=>{
-    if(!err){
-        res.send(docs)
-    }else{
-        res.status(404).json({message:err})
-    }})
-})
-app.get("/Coffes/:id",(req,res)=>{
-    const {id}=req.params
-    Coffes.findById(id,(err,doc)=>{
-        if(!err){
-            if(doc){
-                res.send(doc)
-            }else{
-                res.status(404).json({message:"Not Found"})
-            }
-        }else{
-            res.status(500).json({message:err})
-        }
-    })
-})
-
-
-app.post("/Coffes",(req,res)=>{
-    const coffe=new Coffes({
-        ProductName:req.body.ProductName,
-        ProductInfo:req.body.ProductInfo,
-        ProductPrice:req.body.ProductPrice,
-        ProductUrl:req.body.ProductUrl
-    })
-    coffe.save()
-    res.send("Added")
-})
-app.delete("/Coffes/:id",(req,res)=>{
-    const {id}=req.params
-    Coffes.findByIdAndDelete(id,(err,doc)=>{
-        if(!err){
-            res.send(doc)
-        }else{
-            res.status(404).json({message:err})
-        }
-    })
-})
-
-const BeefSchema = new Schema({
+const datasSchems = new Schema({
     ProductName:{type:String,required:true},
     ProductInfo:{type:String,required:true},
     ProductPrice:{type:Number,required:true},
     ProductUrl:{type:String,required:true},
+    Category:{type:String,required:true},
+
 
 },{
     timestamps:true
 })
 
-const Beefs=mongoose.model('Beefs',BeefSchema)
+const datas=mongoose.model('datas',datasSchems)
 
 
 
-app.get("/Beefs",(req,res)=>{
-    Beefs.find({},(err,docs)=>{
-    if(!err){
-        res.send(docs)
-    }else{
-        res.status(404).json({message:err})
-    }})
-})
-app.get("/Beefs",(req,res)=>{
-    Beefs.find({},(err,docs)=>{
+app.get("/datas",(req,res)=>{
+    datas.find({},(err,docs)=>{
     if(!err){
         res.send(docs)
     }else{
@@ -101,9 +55,9 @@ app.get("/Beefs",(req,res)=>{
     }})
 })
 
-app.get("/Beefs/:id",(req,res)=>{
+app.get("/datas/:id",(req,res)=>{
     const {id}=req.params
-    Beefs.findById(id,(err,doc)=>{
+    datas.findById(id,(err,doc)=>{
         if(!err){
             if(doc){
                 res.send(doc)
@@ -117,19 +71,20 @@ app.get("/Beefs/:id",(req,res)=>{
 })
 
 
-app.post("/Beefs",(req,res)=>{
-    const beef=new Beefs({
+app.post("/datas",(req,res)=>{
+    const data=new datas({
         ProductName:req.body.ProductName,
         ProductInfo:req.body.ProductInfo,
         ProductPrice:req.body.ProductPrice,
-        ProductUrl:req.body.ProductUrl
+        ProductUrl:req.body.ProductUrl,
+        Category:req.body.Category,
     })
-    beef.save()
+    data.save()
     res.send("Added")
 })
-app.delete("/Beefs/:id",(req,res)=>{
+app.delete("/datas/:id",(req,res)=>{
     const {id}=req.params
-    Beefs.findByIdAndDelete(id,(err,doc)=>{
+    datas.findByIdAndDelete(id,(err,doc)=>{
         if(!err){
             res.send(doc)
         }else{
@@ -139,30 +94,156 @@ app.delete("/Beefs/:id",(req,res)=>{
 })
 
 
-const DrinksSchema = new Schema({
-    ProductName:{type:String,required:true},
-    ProductInfo:{type:String,required:true},
-    ProductPrice:{type:Number,required:true},
-    ProductUrl:{type:String,required:true},
+require("./UserDetails")
+const User=mongoose.model("UserInfo")
 
-},{
-    timestamps:true
+app.get("/register",(req,res)=>{
+    User.find({},(err,docs)=>{
+        if(!err){
+            res.send(docs)
+        }else{
+            res.status(404).json({message:err})
+        }})
+})
+app.post("/register",async (req,res)=>{
+    const { email, password,firstname,phone, lastname,address,UserType}=req.body
+    const encryptPassword=await bcrypt.hash(password,10);
+    try{
+        const oldUser =await User.findOne({email})
+        if(oldUser){
+            return res.json({error:"User Exists"})
+        }
+        await User.create({
+            email,
+            password:encryptPassword,
+            firstname,
+            phone, 
+            lastname,
+            address,
+            UserType,
+        });
+        res.send({status:"201"})
+    }catch (error){
+        res.send({status: "error"})
+    }
+
 })
 
-const Drinks=mongoose.model('Drinks',DrinksSchema)
+app.post("/login-user", async (req,res)=>{
+    const {email,password}=req.body
+    const user= await User.findOne({email});
+    if(!user){
+        return res.json({error:"User Not Found"});
+    }
+    if(await bcrypt.compare(password,user.password)){
+        const token=jwt.sign({},JWT_SECRET);
+        if(res.status(201)){
+            return res.json({status:"ok",data:token});
+        }else{
+            return res.json({error:"error"});
+        }
+    }
+    res.json({status: "error",error:"InvAlid Password"});
+});
 
 
 
-app.get("/Drinks",(req,res)=>{
-    Drinks.find({},(err,docs)=>{
+
+
+app.post("/forgot-password", async (req, res) => {
+    const { email } = req.body;
+    try {
+      const oldUser = await User.findOne({ email });
+      if (!oldUser) {
+        return res.json({ status: "User Not Exists!!" });
+      }
+      const secret = JWT_SECRET + oldUser.password;
+      const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
+        expiresIn: "5m",
+      });
+      const link = `http://localhost:4000/reset-password/${oldUser._id}/${token}`;
+      var transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: 'rehim6417@gmail.com',
+              pass: 'xjrg corf ihiv ains'
+            }
+          });
+          
+          var mailOptions = {
+            from: 'rehim6417@gmail.com',
+            to: oldUser.email,
+            subject: 'Sending Email using Node.js',
+            text: link,
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+    } catch (error) {}
+  });
+  
+  app.get("/reset-password/:id/:token", async (req, res) => {
+    const { id, token } = req.params;
+    console.log(req.params);
+    const oldUser = await User.findOne({ _id: id });
+    if (!oldUser) {
+      return res.json({ status: "User Not Exists!!" });
+    }
+    const secret = JWT_SECRET + oldUser.password;
+    try {
+      const verify = jwt.verify(token, secret);
+      res.render("index", { email: verify.email, status: "Not Verified" });
+    } catch (error) {
+      console.log(error);
+      res.send("Not Verified");
+    }
+  });
+  
+  app.post("/reset-password/:id/:token", async (req, res) => {
+    const { id, token } = req.params;
+    const { password } = req.body;
+  
+    const oldUser = await User.findOne({ _id: id });
+    if (!oldUser) {
+      return res.json({ status: "User Not Exists!!" });
+    }
+    const secret = JWT_SECRET + oldUser.password;
+    try {
+      const verify = jwt.verify(token, secret);
+      const encryptedPassword = await bcrypt.hash(password, 10);
+      await User.updateOne(
+        {
+          _id: id,
+        },
+        {
+          $set: {
+            password: encryptedPassword,
+          },
+        }
+      );
+  
+      res.render("index", { email: verify.email, status: "verified" });
+    } catch (error) {
+      console.log(error);
+      res.json({ status: "Something Went Wrong" });
+    }
+  });
+
+  app.get("/imgs",(req,res)=>{
+    imgs.find({},(err,docs)=>{
     if(!err){
         res.send(docs)
     }else{
         res.status(404).json({message:err})
     }})
 })
-app.get("/Drinks",(req,res)=>{
-    Drinks.find({},(err,docs)=>{
+app.get("/imgs",(req,res)=>{
+    imgs.find({},(err,docs)=>{
     if(!err){
         res.send(docs)
     }else{
@@ -170,9 +251,9 @@ app.get("/Drinks",(req,res)=>{
     }})
 })
 
-app.get("/Drinks/:id",(req,res)=>{
+app.get("/imgs/:id",(req,res)=>{
     const {id}=req.params
-    Drinks.findById(id,(err,doc)=>{
+    imgs.findById(id,(err,doc)=>{
         if(!err){
             if(doc){
                 res.send(doc)
@@ -186,19 +267,16 @@ app.get("/Drinks/:id",(req,res)=>{
 })
 
 
-app.post("/Drinks",(req,res)=>{
-    const drink=new Drinks({
-        ProductName:req.body.ProductName,
-        ProductInfo:req.body.ProductInfo,
-        ProductPrice:req.body.ProductPrice,
+app.post("/imgs",(req,res)=>{
+    const img=new imgs({
         ProductUrl:req.body.ProductUrl
     })
-    drink.save()
+    img.save()
     res.send("Added")
 })
-app.delete("/Drinks/:id",(req,res)=>{
+app.delete("/imgs/:id",(req,res)=>{
     const {id}=req.params
-    Drinks.findByIdAndDelete(id,(err,doc)=>{
+    imgs.findByIdAndDelete(id,(err,doc)=>{
         if(!err){
             res.send(doc)
         }else{
@@ -209,141 +287,6 @@ app.delete("/Drinks/:id",(req,res)=>{
 
 
 
-const CakeSchema = new Schema({
-    ProductName:{type:String,required:true},
-    ProductInfo:{type:String,required:true},
-    ProductPrice:{type:Number,required:true},
-    ProductUrl:{type:String,required:true},
-
-},{
-    timestamps:true
-})
-
-const Cakes=mongoose.model('Cakes',CakeSchema)
-
-
-
-app.get("/Cakes",(req,res)=>{
-    Cakes.find({},(err,docs)=>{
-    if(!err){
-        res.send(docs)
-    }else{
-        res.status(404).json({message:err})
-    }})
-})
-app.get("/Cakes",(req,res)=>{
-    Cakes.find({},(err,docs)=>{
-    if(!err){
-        res.send(docs)
-    }else{
-        res.status(404).json({message:err})
-    }})
-})
-
-app.get("/Cakes/:id",(req,res)=>{
-    const {id}=req.params
-    Cakes.findById(id,(err,doc)=>{
-        if(!err){
-            if(doc){
-                res.send(doc)
-            }else{
-                res.status(404).json({message:"Not Found"})
-            }
-        }else{
-            res.status(500).json({message:err})
-        }
-    })
-})
-
-
-app.post("/Cakes",(req,res)=>{
-    const cake=new Cakes({
-        ProductName:req.body.ProductName,
-        ProductInfo:req.body.ProductInfo,
-        ProductPrice:req.body.ProductPrice,
-        ProductUrl:req.body.ProductUrl
-    })
-    cake.save()
-    res.send("Added")
-})
-app.delete("/Cakes/:id",(req,res)=>{
-    const {id}=req.params
-    Cakes.findByIdAndDelete(id,(err,doc)=>{
-        if(!err){
-            res.send(doc)
-        }else{
-            res.status(404).json({message:err})
-        }
-    })
-})
-
-const FastfoodSchema = new Schema({
-    ProductName:{type:String,required:true},
-    ProductInfo:{type:String,required:true},
-    ProductPrice:{type:Number,required:true},
-    ProductUrl:{type:String,required:true},
-
-},{
-    timestamps:true
-})
-
-const Fastfood=mongoose.model('Fastfood',FastfoodSchema)
-
-
-
-app.get("/Fastfood",(req,res)=>{
-    Fastfood.find({},(err,docs)=>{
-    if(!err){
-        res.send(docs)
-    }else{
-        res.status(404).json({message:err})
-    }})
-})
-app.get("/Fastfood",(req,res)=>{
-    Fastfood.find({},(err,docs)=>{
-    if(!err){
-        res.send(docs)
-    }else{
-        res.status(404).json({message:err})
-    }})
-})
-
-app.get("/Fastfood/:id",(req,res)=>{
-    const {id}=req.params
-    Fastfood.findById(id,(err,doc)=>{
-        if(!err){
-            if(doc){
-                res.send(doc)
-            }else{
-                res.status(404).json({message:"Not Found"})
-            }
-        }else{
-            res.status(500).json({message:err})
-        }
-    })
-})
-
-
-app.post("/Fastfood",(req,res)=>{
-    const food=new Fastfood({
-        ProductName:req.body.ProductName,
-        ProductInfo:req.body.ProductInfo,
-        ProductPrice:req.body.ProductPrice,
-        ProductUrl:req.body.ProductUrl
-    })
-    food.save()
-    res.send("Added")
-})
-app.delete("/Fastfood/:id",(req,res)=>{
-    const {id}=req.params
-    Fastfood.findByIdAndDelete(id,(err,doc)=>{
-        if(!err){
-            res.send(doc)
-        }else{
-            res.status(404).json({message:err})
-        }
-    })
-})
 
 
 const PORT=process.env.PORT

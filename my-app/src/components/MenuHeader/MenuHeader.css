@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+header{
+    position: relative;
+}
+.paragraf{
+    
+    
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    top: 43%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.paragraf h4{
+    font-weight: 400;
+    line-height: 60px;
+    font-family: 'Josefin Sans', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 36px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pages{
+    display: flex;gap: 11px;
+    justify-content: center;
+    align-items: center;
+    margin-top: -.7rem;
+}
+header img{
+    filter: brightness(70%);
+}
+.pages #homeparagraf{
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 1px;
+font-family: 'Poppins', sans-serif;
+line-height: 18px;
+text-transform: uppercase;
+cursor: pointer;
+    color: rgb(255, 255, 255,0.9);
+}
+.pages #aboutparagraf{
+cursor: pointer;
+font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 1px;
+font-family: 'Poppins', sans-serif;
+line-height: 18px;
+text-transform: uppercase;
+    color: rgb(191, 191, 191);
+}

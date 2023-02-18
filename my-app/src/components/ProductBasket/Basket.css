@@ -1,0 +1,218 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+
+
+.basketSection {
+    background-image: url("https://themewagon.github.io/coffee1/images/bg_4.jpg");
+    background-attachment: fixed;
+    height: 130vh;
+}
+
+.basketSection th {
+    color: white;
+    line-height: 27px;
+    font-size: 17px;
+    font-weight: 500;
+    width: 7rem;
+    padding: -2rem 3rem;
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 0;
+}
+
+#basketcontainer {
+    padding-top: 6rem;
+    margin: auto;
+    width: 100%;
+    overflow-x: auto;
+}
+
+td {
+    color: white;
+}
+
+table {
+    width: 80%;
+}
+
+#basketcontainer thead {
+
+    align-items: center;
+}
+
+#basketcontainer thead tr {
+    background-color: rgb(199, 155, 99);
+    height: 4rem;
+}
+
+#basketcontainer tr {
+    height: 10rem;
+}
+
+#basketcontainer tbody tr td {
+    justify-content: space-evenly;
+    align-items: center;
+    width: 7rem;
+    padding: 0rem 2.6rem;
+}
+
+#removebtn {
+    height: 4rem;
+    width: 4rem;
+    font-size: 1rem;
+    border: 1px solid rgb(255, 255, 255, 0.1);
+    background-color: transparent;
+    color: white;
+    padding: .5rem;
+    cursor: pointer;
+}
+
+#icondel {
+    font-size: 1.2rem;
+    font-family: 'Josefin Sans', sans-serif;
+    line-height: 1;
+}
+
+td img {
+    width: 10.5rem;
+    padding-right: 3rem;
+    margin-top: 2.2rem;
+}
+
+td {
+    width: 20rem;
+}
+
+td h3 {
+    text-align: center;
+    margin-right: 2rem;
+    color: white;
+    font-size: 16px;
+    padding-left: .5rem;
+    width: 20rem;
+    line-height: 22px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+td p {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(128, 128, 128);
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 25px;
+    transition: .5s;
+}
+
+td h4 {
+    text-align: center;
+    color: white;
+    font-size: 17px;
+    line-height: 22px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    margin-right: 2rem;
+    text-transform: uppercase;
+}
+
+#removebtn:hover {
+    border: 1px solid rgb(255, 255, 255, 0.1);
+    background-color: rgb(199, 155, 99);
+    color: black;
+
+}
+
+#countspan {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c49b63;
+    font-size: 18px;
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    height: 3.3rem;
+    width: 9.3rem;
+}
+
+.totalprice {
+    display: block;
+    margin-top: 1rem;
+    margin-right: 10%;
+    height: auto;
+
+    text-align: left;
+    justify-content: first baseline;
+    float: right;
+
+
+}
+
+#pricetable {
+    padding: 1.2rem;
+    width: 16rem;
+    box-sizing: border-box;
+    border: 1px solid rgb(255, 255, 255, 0.08);
+    height: auto;
+    margin-top: 3rem;
+}
+
+.totalprice h3 {
+    font-weight: 400;
+    line-height: 28px;
+    text-transform: uppercase;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 19px;
+    color: white;
+}
+
+.totalprice .row1 {
+    padding-left: .3rem;
+    display: flex;
+    gap: 40px;
+    font-weight: 400;
+    font-size: 16px;
+    color: rgb(191, 191, 191);
+    font-family: 'Poppins', sans-serif;
+    line-height: 27px;
+}
+
+#uprow {
+    margin-top: -1rem;
+}
+
+#btn2 {
+    margin-top: 1rem;
+    text-align: center;
+    width: 16rem;
+    height: 3.4rem;
+    background-color: #c49b63;
+
+}
+
+#btn2:hover {
+    background-color: black;
+    border-color: #c49b63;
+    color: white;
+    transition: .7s;
+}
+@media only screen and (max-width: 900px) {
+    .totalprice {
+        float: none;
+        margin: 0 auto;
+
+text-align: center;
+
+
+    }
+    #pricetable{
+        margin-top: 2rem;
+        margin: 0 auto;
+
+        text-align: center;
+    }
+    #basketcontainer{
+        padding-bottom: 4rem;
+    }
+}
+    

@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+
+#menusection{
+    height: auto;
+    background-image: url("https://themewagon.github.io/coffee1/images/bg_4.jpg");
+    background-attachment: fixed;
+    padding-bottom: 7rem;
+}
+#catalog{
+    width: 90%;
+
+    padding-top: 5rem;
+    display: flex;flex-wrap: wrap;
+    margin: auto;
+}
+.firstrow{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    margin: auto;
+    
+}
+.category .card1{
+    display: flex;
+    gap: 30px;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+}
+.category img{
+    height: 62px;
+    width: 62px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+.category h3{
+    padding-top: 5rem;
+font-family: 'Josefin Sans', sans-serif;
+font-size: 24px;
+    font-weight: 400;
+    color: white;
+    line-height: 30px;
+    display: block;padding-bottom: 3rem;
+}
+.category h4{
+font-size: 16px;
+color: rgb(191, 191, 191);
+font-family: 'Josefin Sans', sans-serif;
+line-height: 22px;
+background: #151111;
+padding-right: 20px;
+
+}
+#lines{
+    font-size: .4vw;
+    padding-top: .7rem;
+    color: rgb(196, 155, 99);
+
+}
+#price{
+    padding-left: 1.8rem;
+    background: #151111;
+    color: rgb(196, 155, 99);
+font-family: 'Poppins', sans-serif;
+font-size: 1.1rem;
+}
+.category .card-body{
+margin-top: 1.3rem;
+}
+.category p{
+font-family: 'Poppins', sans-serif;
+font-size: 14px;
+font-weight: 300;
+color: rgb(128, 128, 128);
+line-height: 25px;
+}
+@media only screen and (max-width: 1200px) {
+    #catalog{
+
+    
+        padding-top: 4rem;
+    
+    }
+    .category h3{
+        padding: 0;
+        padding-bottom: 1rem;
+        padding-top: 2rem;
+    }
+
+}

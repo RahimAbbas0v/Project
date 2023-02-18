@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Poppins&display=swap');
+*{
+    font-family: 'Josefin Sans', sans-serif;
+
+}
+#signupcontainer{
+    background-image: url('https://elementsofbyron.com.au/wp-content/uploads/2020/10/EOB-ByronCafe-LEAD.jpg');
+    height: auto;
+    padding-bottom: 5rem;
+    background-size: cover;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+ 
+#signupcontainer{
+    padding-top: 14%;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    top: 0;position:relative;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+#signupcontainer form{
+    padding-bottom: 2rem;
+    height: auto;
+    width: 24rem;
+    border-radius: 1.5%;
+    background-color: white;
+    margin: auto;
+    background-color: #351908;
+    text-align: center;
+    justify-content: center;
+    border: 3px solid rgb(196, 155, 99);;
+}
+#signupcontainer h3{
+    color: white;
+    font-size: 30px;
+    font-family: 'Josefin Sans', sans-serif;
+font-weight: 500;
+    line-height: 45px;
+
+}
+
+#signupcontainer .imgdiv{
+    padding-top: 3rem;
+    width: 100%;
+    padding-bottom: 2rem;
+}
+#signupcontainer img{
+    width: 20%;
+}
+#signupcontainer input:focus{
+    outline: none;
+    border-color: rgb(196, 155, 99);
+}
+#signupcontainer input{
+    box-sizing:border-box;
+    padding-left: 2.8rem;
+    width: 80%;
+    text-align: left;
+    height: 3rem;
+    background-color: transparent;
+    outline: hidden;
+    border-color: #c49b63;
+    color: white;
+    border-top: hidden;
+    border-right: hidden;
+    border-radius: 0;
+    border-left: hidden;
+    border-bottom: 2px solid rgba(255, 255, 255, .5);
+}
+#signupcontainer input::placeholder{
+    color: white;
+    padding-top: .3rem;
+    font-size: 16.3px;
+
+}
+.radio label{
+    display: flex;
+}
+.radio input{
+    font-size: 1rem;
+    color: red;
+}
+#nameicon{
+    height: 1.5rem;
+    width: 1.5rem;
+    align-items: center;
+    margin-top: .8rem;
+    margin-left: .5rem;
+    color: white;
+    position: absolute;
+}
+#signupcontainer button{
+    margin-top: 1rem;
+    height: 3.3rem;
+    color: #c49b63;
+    border: 1px solid white;
+    width: 13rem;
+    font-family: 'Josefin Sans', sans-serif;
+
+    border-radius: 3px;
+    font-size: 16px;
+}
+#signupcontainer button:hover{
+    color: white;
+    background-color: #c49b63;
+    border: 1px solid #c49b63;
+    transition: .6s;
+}
+#signupcontainer p{
+    font-size: .8rem;
+    padding-top: 1rem;
+    text-align: right !important;
+    font-family: 'Josefin Sans', sans-serif;
+
+    width: 90%;
+    font-weight: 500;
+    color: white;
+}
+#signupcontainer p:hover{
+  transition: .4s;
+  cursor: pointer;
+    color: #c49b63;
+}
+#signupcontainer h4{
+    margin-top: 2rem;
+
+}
+#signup{
+    padding-top: 2rem;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+}
+#signup:hover{
+    color: #c49b63;
+    transition: .4s;
+}
+.radio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.radio label{
+    gap: 10px;
+    color: white;
+}
+.radio label input{
+    width: 1.3rem !important;
+    margin-top:-.8rem;
+}

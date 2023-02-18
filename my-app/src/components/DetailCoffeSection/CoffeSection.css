@@ -1,0 +1,126 @@
+
+#coffesection2{
+    background-color: transparent;
+    height:auto;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    background-attachment: fixed;
+    background-blend-mode: darken;
+
+    text-align: center;
+    padding-bottom: 6rem;
+}
+
+.headname{
+    margin: auto;
+    padding-top: 9rem;
+}
+.headname span{
+    font-family: 'Great Vibes', cursive;
+    font-weight:400 ;
+    line-height: 30px;
+    font-size:50px ;
+    text-align: center;
+    letter-spacing: 0px;
+    color:rgb(196, 155, 99) ;
+}
+.headname h2{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight:700 ;
+    line-height: 40px;
+    font-size:47px ;
+    letter-spacing: 0px;
+    color:white;
+    padding-bottom: 1.3rem;
+}
+.headname p{
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    font-weight:300 ;
+    line-height: 27px;
+    font-size:15px ;
+    width: 39vw;
+    letter-spacing: 0px;
+    color:rgb(128, 128, 128);
+
+}
+.cards3{
+    margin: auto;
+    margin-top: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center; flex-wrap: wrap;
+    gap: 30px;
+}
+.card3 img{
+    cursor: pointer;
+    height: 220px;
+}
+.card3 h3{
+    cursor: pointer;
+
+    padding-top: 1.5rem;
+    font-size:19px ;
+    font-weight:400 ;
+    line-height:25px;
+    color:white ;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.card3 p{
+    font-size:15px ;
+    font-weight:300 ;
+    line-height:20px ;
+    color:rgb(128, 128, 128) ;
+    font-family: 'Poppins', sans-serif;
+    width: 16rem;
+    margin: auto;
+    margin-top: 1rem;
+
+}
+.card3 p span{
+    margin-top: 1rem;
+    font-size:18px ;
+    font-weight:300 ;
+    line-height:32px ;
+    color:white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+.card3 button{
+    cursor: pointer;
+
+    margin-top: 1rem;
+    width: 7.5rem;
+    height: 2.3rem;
+    text-align: center;
+    font-size:13px ;
+    font-weight:400 ;
+    line-height:19px ;
+    color:rgb(199, 155, 99);
+    font-family: 'Poppins', sans-serif;
+    background-color: transparent;
+    border-color: rgb(199, 155, 99);
+
+}
+.card3 button:hover{
+    background-color: rgb(196, 155, 99);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    border-color: rgb(199, 155, 99);
+    transition: .7s;
+}    
+
+@media only screen and (max-width: 1300px) {
+
+    .headname p{
+        font-size:auto ;
+        width: auto;
+        letter-spacing: 0px;
+        padding: 1rem;
+        color:rgb(128, 128, 128);
+    
+    }
+
+}

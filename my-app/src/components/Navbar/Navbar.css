@@ -21,11 +21,14 @@ z-index: 2;
     padding-top: 25px;
     padding-bottom: 6px;
 }
+.active{
+    color: #c49b63;
+}
 .navbar #link{
     text-decoration: none;
     color: rgba(255, 255, 255, 0.9);
     font-weight: 400;
-    font-size: 14px;
+    font-size: 13px;
     font-family: 'Poppins', sans-serif;
     letter-spacing: 2px;
     line-height: 20px;
@@ -80,12 +83,10 @@ transition: 0.4s;
     text-transform: uppercase;
     letter-spacing: 5px;
 }
-#home #link{
-    color: #c49b63;
-}
 #shopicon{
     color: white;
     cursor: pointer;
+    display: flex;
 }
 #toggler,
 .navbar label{
@@ -94,7 +95,15 @@ transition: 0.4s;
 #compsup{
     background: #f8b500;
     padding:0.4rem;
+    padding-top: .8rem;
     border-radius: 40%;
+}
+#navicon{
+    font-size: 1.5rem;
+}
+#link2{
+    color: black;
+    text-decoration: none;
 }
 @media only screen and (max-width: 1000px) {
     .navbar label{
@@ -106,9 +115,9 @@ transition: 0.4s;
         justify-content: space-between;
         padding-top: 22px;
         padding-bottom: 3px;
+        position: -webkit-sticky; /* Safari */
         position: sticky;
-        top: 0.001;
-        z-index: 1;
+        top: 0;
     }
     .companyName{
         padding: 5px;
