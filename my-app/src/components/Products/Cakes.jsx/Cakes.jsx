@@ -5,7 +5,12 @@ import { duration } from "@mui/material";
 import "./Cakes.css";
 import axios from "axios"
 import Fade from "react-reveal/Fade";
+import {useSelector,useDispatch} from "react-redux/es/exports" ;
+import {AddToBasket} from "../../../reducers/BasketSlice"
 function Cake() {
+  const basket=useSelector(state=>state.basket.value)
+  const count=useSelector(state=>state.basket.count)
+  const dispatch=useDispatch()
   const [data,setData]=useState([])
   useEffect(()=>{
     axios.get("http://localhost:4000/datas")
@@ -14,6 +19,9 @@ function Cake() {
   useEffect(()=>{
     Aos.init({duration:600})
   },[])
+  const AddBasket=(item)=>{
+    dispatch(AddToBasket(item))
+  }
   return (
     <section id="cakesection">
       <div className="container" id="cakecontainer">
@@ -30,7 +38,7 @@ function Cake() {
               <p>
                 <span>${item.ProductPrice}</span>
               </p>
-              <button>Add to Cart</button>
+              <button onClick={()=>AddBasket(item)}>Add to Cart</button>
             </div>
           </div>))}
           

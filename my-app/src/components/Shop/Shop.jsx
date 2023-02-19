@@ -55,7 +55,7 @@ function Products() {
           </p>
       
       </div>
-        <div className="buttons">
+        <div className="buttons" style={{paddingBottom:"3rem"}}>
           <button
             onClick={handleClick1}
             id="dishbutton"

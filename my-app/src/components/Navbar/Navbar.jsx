@@ -92,11 +92,8 @@ function Navbar({history}) {
                 >
                  <Link to="shop" id="link2">Shop</Link> 
                 </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Single Product
-                </NavDropdown.Item>
                 <NavDropdown.Item href="#action/3.3"><Link to="/cart" id="link2">Cart</Link></NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.4">Checkout</NavDropdown.Item>
+                <NavDropdown.Item href="#action/3.4"><Link to="/checkout" id="link2">Checkout</Link></NavDropdown.Item>
               </NavDropdown>
             </li>
             <li>

@@ -42,7 +42,7 @@ function Products() {
             Vokalia and Consonantia, there live the blind texts.
           </p>
       </div>
-        <div className="buttons">
+        <div className="buttons" style={{paddingBottom:"3rem"}}>
           <button
             onClick={handleClick1}
             id="dishbutton"

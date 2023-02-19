@@ -3,14 +3,16 @@ import Aos from "aos"
 import 'aos/dist/aos.css'
 import { duration } from "@mui/material"; 
 import "./Coffe.css";
-import {useSelector,useDispatch} from "react-redux/es/exports" ;
 import axios from "axios"
+import {useSelector,useDispatch} from "react-redux/es/exports" ;
 import {AddToBasket} from "../../reducers/BasketSlice"
 function Coffes() {
   const basket=useSelector(state=>state.basket.value)
   const count=useSelector(state=>state.basket.count)
   const dispatch=useDispatch()
   const [data,setData]=useState([])
+  const [beef,setBeef]=useState([])
+
   useEffect(()=>{
     axios.get("http://localhost:4000/datas")
     .then(res=>setData(res.data))
@@ -21,8 +23,7 @@ function Coffes() {
   const AddBasket=(item)=>{
     dispatch(AddToBasket(item))
   }
-  console.log(basket);
-  console.log(count);
+
   return (
     <section id="coffesection">
          <div className="headname" data-aos="fade-up" data-aos-delay={100}>

@@ -6,11 +6,13 @@ import "./ProductDetail.css"
 import 'aos/dist/aos.css'
 import { duration } from "@mui/material";
 import CoffeSection from "../DetailCoffeSection/CoffeSection"
-
+import {DeleteFromBasket,AddToBasket,IncrementByUser} from "../../reducers/BasketSlice"
+import {useSelector,useDispatch} from "react-redux/es/exports"
 function ProductDetail() {
   let { Id } = useParams();
   let [count, setCount] = useState(0);
   const [data, setData] = useState([]);
+  
   useEffect(() => {
     axios
       .get(`http://localhost:4000/datas/${Id}`)
@@ -20,16 +22,21 @@ function ProductDetail() {
     count = count + 1;
     setCount(count);
   }
-  console.log(typeof data.ProductUrl); 
+  const dispatch=useDispatch()
+  const basket=useSelector(state=>state.basket.value)
+  const handledelete=(itemId)=>{
+    dispatch(DeleteFromBasket(itemId))
+  }
   function decrementCount() {
-    if (count >= 1) {
+    if (count >= 2) {
       count = count - 1;
       setCount(count);
     } else {
-      count = 0;
+      count = 1;
       setCount(count);
     }
   }
+  console.log(count);
   const navigate=useNavigate()
   const handleBack=()=>{
     navigate("/shop")
@@ -37,6 +44,10 @@ function ProductDetail() {
   useEffect(()=>{
     Aos.init({duration:500})
   },[])
+  const AddBasket=(item)=>{
+    dispatch(AddToBasket(item))
+    dispatch(IncrementByUser(count))
+  }
   return (
     <section id="detailSection">
       <div className="container" id="detailcontainer1">
@@ -44,8 +55,8 @@ function ProductDetail() {
           <img src={data.ProductUrl} alt="" data-aos="zoom-in" data-aos-delay="100" />
         </div>
         <div className="rightinfocard" data-aos="fade-left" data-aos-delay="150">
-          <h3>CREAMY LATTE COFFEE</h3>
-          <span>$4.90</span>
+          <h3>{data.ProductName}</h3>
+          <span>${data.ProductPrice}</span>
           <p>
             A small river named Duden flows by their place and supplies it with
             the necessary regelialia. It is a paradisematic country, in which
@@ -76,7 +87,7 @@ function ProductDetail() {
               <span onClick={incrementCount}>+</span>
             </div>
             <div style={{display:"flex",gap:"30px"}}>
-            <button type="submit">Add to Cart</button>
+            <button type="submit" onClick={()=>AddBasket(data)}>Add to Cart</button>
             <button type="submit" onClick={handleBack} style={{background:"transparent",borderColor:"white",color:"white"}}>Go back</button></div>
           </form>
         </div>

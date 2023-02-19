@@ -66,7 +66,7 @@ function PaginationComponent() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:4000/imgs")
+    fetch("http://localhost:4000/datas")
       .then((response) => response.json())
       .then((json) => setData(json));
   }, []);

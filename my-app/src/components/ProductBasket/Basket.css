@@ -30,7 +30,8 @@ td {
 }
 
 table {
-    width: 80%;
+    width: 100%;
+    margin: auto;
 }
 
 #basketcontainer thead {
@@ -124,15 +125,9 @@ td h4 {
 
 #countspan {
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #c49b63;
+
     font-size: 18px;
     background-color: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    height: 3.3rem;
-    width: 9.3rem;
 }
 
 .totalprice {
@@ -140,7 +135,6 @@ td h4 {
     margin-top: 1rem;
     margin-right: 10%;
     height: auto;
-
     text-align: left;
     justify-content: first baseline;
     float: right;
@@ -195,6 +189,16 @@ td h4 {
     border-color: #c49b63;
     color: white;
     transition: .7s;
+}
+#countProduct{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #c49b63;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    gap: 10px;
+    height: 3.3rem;
+    width: 9.3rem;
 }
 @media only screen and (max-width: 900px) {
     .totalprice {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Products.css";
+import "./Products2.css";
 import axios from "axios";
 import { Link, Outlet } from "react-router-dom";
 import ScrollAnimation from "react-animate-on-scroll";
@@ -44,7 +44,7 @@ function Products() {
           </p>
       
       </div>
-        <div className="buttons">
+        <div className="buttons" style={{paddingBottom:"3rem"}}>
           <button
             onClick={handleClick1}
             id="dishbutton"

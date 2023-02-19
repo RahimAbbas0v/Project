@@ -5,8 +5,12 @@ import Aos from "aos"
 import 'aos/dist/aos.css'
 import { duration } from "@mui/material"; 
 import { useNavigate } from "react-router-dom";
-
+import {useSelector,useDispatch} from "react-redux/es/exports" ;
+import {AddToBasket} from "../../../reducers/BasketSlice"
 function Cake() {
+  const basket=useSelector(state=>state.basket.value)
+  const count=useSelector(state=>state.basket.count)
+  const dispatch=useDispatch()
   const [data,setData]=useState([])
   useEffect(()=>{
     axios.get("http://localhost:4000/datas")
@@ -18,6 +22,9 @@ function Cake() {
   const navigate=useNavigate()
   const handleView=(item)=>{
     navigate(`/details/${item._id}`)
+  }
+  const AddBasket=(item)=>{
+    dispatch(AddToBasket(item))
   }
   return (
     <section id="cakesection">
@@ -37,7 +44,7 @@ function Cake() {
                 <span>${item.ProductPrice}</span>
               </p>
               <button  onClick={()=>handleView(item)}>Info ...</button>
-              <button>Add to Cart</button>
+              <button onClick={()=>AddBasket(item)}>Add to Cart</button>
             </div>
           </div>))}
           

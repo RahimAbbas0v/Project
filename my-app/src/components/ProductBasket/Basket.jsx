@@ -7,16 +7,24 @@ import Aos from "aos"
 import 'aos/dist/aos.css'
 import { duration } from "@mui/material";
 import CoffeSection from "../../components/DetailCoffeSection/CoffeSection"
+import {DeleteFromBasket,DecreaseItem,IncreaseItem} from "../../reducers/BasketSlice"
 import {useSelector,useDispatch} from "react-redux/es/exports"
 function Basket() {
   useEffect(()=>{
     Aos.init({duration:600})
   },[])
+  const [total,setTotal]=useState(0.0)
   const dispatch=useDispatch()
   const basket=useSelector(state=>state.basket.value)
-  console.log(basket)
-  const [total,setTotal]=useState(0.0)
-
+  const handledelete=(itemId)=>{
+    dispatch(DeleteFromBasket(itemId))
+  }
+  const Decrase=(itemId)=>{
+    dispatch(DecreaseItem(itemId))
+  }
+  const Increase=(itemId)=>{
+    dispatch(IncreaseItem(itemId))
+  }
   return (
     <>
       <section className="basketSection">
@@ -33,12 +41,11 @@ function Basket() {
               </tr>
             </thead>
             <tbody>
-              return
               {
                 basket.map((item)=>(
                 <tr>
                     <td>
-                        <span id='removebtn'><ClearIcon id='icondel'/></span>
+                        <span id='removebtn' onClick={()=>handledelete(item.data._id)}><ClearIcon id='icondel'/></span>
                     </td>
                     <td>
                         <img src={item.data.ProductUrl} alt="" />
@@ -47,8 +54,8 @@ function Basket() {
                         <p>Far far away, behind the word mountains, far from the countries</p>
                     </td> <td>
                         <h4>{item.data.ProductPrice}</h4>
-                    </td> <td>
-                        <span id="countspan">{item.counter}</span>
+                    </td> <td><div id="countProduct" >
+                        <span style={{padding:".5rem",}} onClick={()=>Decrase(item.data._id)}>-</span><span id="countspan">{item.counter}</span ><span style={{padding:".5rem"}} onClick={()=>Increase(item.data._id)} >+</span></div>
                     </td> <td>
                         <span>${(item.data.ProductPrice*item.counter).toFixed(2)}</span>
                     </td>

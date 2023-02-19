@@ -6,9 +6,13 @@ import 'aos/dist/aos.css'
 import { duration } from "@mui/material"; 
 import { useNavigate } from "react-router-dom";
 import { Link } from "@carbon/react";
-
+import {useSelector,useDispatch} from "react-redux/es/exports" ;
+import {AddToBasket} from "../../../reducers/BasketSlice"
 function Drinks() {
   const [data,setData]=useState([])
+  const basket=useSelector(state=>state.basket.value)
+  const count=useSelector(state=>state.basket.count)
+  const dispatch=useDispatch()
   useEffect(()=>{
     axios.get("http://localhost:4000/datas")
     .then(res=>setData(res.data))
@@ -19,6 +23,9 @@ function Drinks() {
   const navigate=useNavigate()
   const handleView=(_Id)=>{
     navigate(`/details/${_Id}`)
+  }
+  const AddBasket=(item)=>{
+    dispatch(AddToBasket(item))
   }
   return (
     <section id="drinksection">
@@ -37,7 +44,7 @@ function Drinks() {
                 <span>${item.ProductPrice}</span>
               </p>
               <button onClick={()=>handleView(item._id)}>Info ...</button>
-              <button> Add to Cart</button>
+              <button onClick={()=>AddBasket(item)}>Add to Cart</button>
             </div>
           </div>))}
           

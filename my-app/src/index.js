@@ -36,6 +36,7 @@ import Login from './Pages/LoginPage/Login';
 import SignIn from './components/Login/Login'
 import SignUp from './components/SignUp/SignUp';
 import ResetPassword from './components/ResetPassword/ResetPassword';
+import Checkout from './Pages/CheckoutPage/Checkout'
 import { store } from './config/Store';
 const router = createBrowserRouter([
   {
@@ -128,6 +129,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart/>
+      },
+      {
+        path: "/checkout",
+        element: <Checkout/>
       },
      
       {

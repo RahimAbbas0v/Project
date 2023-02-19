@@ -1,0 +1,262 @@
+ #checkoutSection{
+    background-image: url('https://themewagon.github.io/coffee1/images/bg_4.jpg');
+    height:auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+    padding-bottom: 6rem;
+}
+#checkoutcontainer{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5rem;
+}
+.cards4{
+    position: relative;
+  overflow-y: auto;
+    height: auto;
+    max-height: 150vh;
+    width: 73%;
+    display: flex;text-align: center;
+    justify-content: left;
+    gap: 30px;
+    margin-top:0rem;
+    padding-bottom: 10rem;
+}
+.card4 img{
+    cursor: pointer;
+    height: 180px;
+    object-fit: cover;
+}
+.cards4 .card4{
+    width: auto;
+    height: auto;
+}
+.card4 h3{
+    cursor: pointer;
+    padding-top: 1.5rem;
+    font-size:19px ;
+    font-weight:400 ;
+    line-height:25px;
+    color:white ;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.card4 p{
+    font-size:15px ;
+    font-weight:300 ;
+    line-height:20px ;
+    color:rgb(128, 128, 128) ;
+    font-family: 'Poppins', sans-serif;
+    width: 16rem;
+    margin: auto;
+    margin-top: 1rem;
+
+}
+.card4 p span{
+    margin-top: 1rem;
+    font-size:18px ;
+    font-weight:300 ;
+    line-height:32px ;
+    color:white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+.cards4 .card4{
+}
+.card4 button{
+    cursor: pointer;
+
+    margin-top: 1rem;
+    width: 7.5rem;
+    height: 2.3rem;
+    text-align: center;
+    font-size:13px ;
+    font-weight:400 ;
+    line-height:19px ;
+    color:rgb(199, 155, 99);
+    font-family: 'Poppins', sans-serif;
+    background-color: transparent;
+    border-color: rgb(199, 155, 99);
+
+}
+.card4 button:hover{
+    background-color: rgb(196, 155, 99);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    border-color: rgb(199, 155, 99);
+    transition: .7s;
+}    
+
+.categorys{
+    width: 20%;
+}
+.search input:focus{
+    outline: none;
+    border-color: white;
+}
+.search input{
+    box-sizing:border-box;
+    padding-left: 2.8rem;
+    width: 80%;
+    text-align: left;
+    height: 3rem;
+    background-color: transparent;
+    outline: hidden;
+    border-color: #c49b63;
+    color: white;
+    border-top: hidden;
+    border-right: hidden;
+    border-radius: 0;
+    border-left: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+}
+.search input::placeholder{
+    color: white;
+    padding-top: .3rem;
+    font-size: 16.3px;
+
+}
+#nameicon{
+    height: 1.5rem;
+    width: 1.5rem;
+    align-items: center;
+    margin-top: .8rem;
+    margin-left: .5rem;
+    color: rgb(204, 205, 204);
+    position: absolute;
+}
+.productCategorys h4{
+ padding-top:4rem;
+ padding-bottom: 1rem;
+    font-size: 19px;
+    font-weight:400 ;
+    line-height:25.2px ;
+    letter-spacing: 0;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.productCategorys .row{
+    display: flex;
+    gap: 35%;
+    cursor: pointer;
+
+}
+.productCategorys p{
+    font-size: 16px;
+    width: 28%;
+    font-weight:300 ;
+    line-height:27.2px ;
+    letter-spacing: 0;
+    color: rgb(204, 205, 204);
+    font-family: 'Poppins', sans-serif;
+    margin-top: .2rem;
+}
+#blogh{
+    padding-top:4rem;
+    padding-bottom: 4rem;
+       font-size: 19px;
+       font-weight:400 ;
+       line-height:25.2px ;
+       letter-spacing: 0;
+       color: white;
+       font-family: 'Josefin Sans', sans-serif;
+}
+.blogdiv3 {
+    display: flex;
+    padding-top: 2rem;
+    padding-bottom: .4rem;
+    gap: 20px;
+}
+
+.blogside h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 15px;
+    color: white;
+    font-weight: 400;
+    line-height: 22.4px;
+    letter-spacing: 1px;
+
+}
+
+.blogdiv3 h4 {
+    width: 85%;
+    color: rgb(255, 255, 255, 0.9);
+    font-size: 14px;
+}
+.blogside p{
+    cursor: pointer;
+}
+
+.blogdiv3 h4:hover {
+    color: #c49b63;
+    cursor: pointer;
+    transition: .6s;
+}
+
+.blogdiv3 h4 {
+    font-size: 14px;
+    width: 85%;
+    color: rgb(255, 255, 255, 0.9);
+}
+
+.blogdiv3 h4:hover {
+    color: #c49b63;
+    cursor: pointer;
+    transition: .6s;
+}
+
+.imgside img {
+    width: 80px;
+    height: 80px;
+}
+
+.infoside2 p {
+    color: rgb(128, 128, 128);
+    font-weight: 300;
+    font-size: 12px;
+    line-height: 21px;
+}
+
+
+@media only screen and (max-width: 1400px) {
+    #checkoutcontainer{
+        flex-direction: row-reverse;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .cards4{
+        justify-content: center;
+        max-height: 80vh;
+        width: 100%;
+    }
+    .categorys{
+        width: 100%;
+        margin: auto;
+        display: flex;
+        gap: 5%;
+        justify-content: space-evenly;
+    }
+}
+@media only screen and (max-width: 870px) {
+    #checkoutcontainer{
+        flex-direction: row-reverse;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+
+    }
+    .cards4{
+        justify-content: center;
+        max-height: 80vh;
+        width: 100%;
+    }
+    .categorys{
+        width: 60%;
+        margin: auto;
+        padding: 0;
+        display: block;
+    }
+}

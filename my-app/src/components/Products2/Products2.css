@@ -37,7 +37,7 @@
 #productsection2{
     background-image: url('https://themewagon.github.io/coffee1/images/bg_4.jpg');
     background-attachment: fixed;
-    height: 220vh;
+    height: auto;
 }
 .buttons{
     padding-top: 4rem;
