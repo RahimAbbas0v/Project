@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import "./Login.css"
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
 import axios from 'axios'
 const SignupSchema = Yup.object().shape({
@@ -23,12 +23,20 @@ const SignupSchema = Yup.object().shape({
 
 function Login() {
   const [data,setData]=useState([])
-  const [drinks,setDrinks]=useState([])
+  const [type,setType]=useState([])
+
+  const [userData,setUserdata]=useState([])
 useEffect(()=>{
-  axios.get("http://localhost:4000/cakes")
+  axios.get("http://localhost:4000/register")
   .then(res=>setData(res.data))
 },[])
 
+useEffect(()=>{
+  axios.get("http://localhost:4000/userData")
+  .then(res=>setUserdata(res.data))
+},[])
+
+const navigate=useNavigate()
   return (
     <>
     <section id='loginsection'>
@@ -44,6 +52,24 @@ useEffect(()=>{
           .then(res=>{console.log(res.data,"UserInfo");
         if(res.data.status=="ok"){
           alert("login successful")
+          window.localStorage.setItem("token", res.data.data);
+          window.localStorage.setItem("loggedIn", true);
+          
+            userData.filter(x=>values.email==x.email && x.UserType==='Admin').map((item)=>{
+              window.localStorage.setItem("item",item.UserType);
+              if(item.UserType=="Admin"){
+                navigate("/panel")
+              }
+              
+          })
+
+          userData.filter(x=>values.email==x.email && x.UserType==='User').map((item)=>{
+            window.localStorage.setItem("item",item.UserType);
+            if(item.UserType=="User"){
+              navigate("/")
+            }
+        })
+          
         }
         })
         }

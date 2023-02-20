@@ -18,8 +18,6 @@ import ScrollToTop from "../../components/ScrollTop/ScrollTop";
 import MoonLoader from "react-spinners/MoonLoader";
 import LoadingScreen from 'react-loading-screen';
 function Home() {
-  
-
   const [loading,setLoading]=useState(false)
   useEffect(()=>{
     setLoading(true)

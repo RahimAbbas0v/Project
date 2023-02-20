@@ -239,6 +239,9 @@
         gap: 5%;
         justify-content: space-evenly;
     }
+    #blogh{
+        padding-top: 0;
+    }
 }
 @media only screen and (max-width: 870px) {
     #checkoutcontainer{

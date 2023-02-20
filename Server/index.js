@@ -145,8 +145,38 @@ app.post("/login-user", async (req,res)=>{
     }
     res.json({status: "error",error:"InvAlid Password"});
 });
+app.get("/userData",(req,res)=>{
+  User.find({},(err,docs)=>{
+      if(!err){
+          res.send(docs)
+      }else{
+          res.status(404).json({message:err})
+      }})
+})
+app.post("/userData", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      }
+      return res;
+    });
+    console.log(user);
+    if (user == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
 
-
+    const useremail = user.email;
+    User.findOne({ email: useremail })
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) {}
+});
 
 
 
@@ -169,11 +199,10 @@ app.post("/forgot-password", async (req, res) => {
               pass: 'xjrg corf ihiv ains'
             }
           });
-          
           var mailOptions = {
             from: 'rehim6417@gmail.com',
             to: oldUser.email,
-            subject: 'Sending Email using Node.js',
+            subject: 'Reset Password',
             text: link,
           };
           
@@ -234,56 +263,56 @@ app.post("/forgot-password", async (req, res) => {
     }
   });
 
-  app.get("/imgs",(req,res)=>{
-    imgs.find({},(err,docs)=>{
-    if(!err){
-        res.send(docs)
-    }else{
-        res.status(404).json({message:err})
-    }})
-})
-app.get("/imgs",(req,res)=>{
-    imgs.find({},(err,docs)=>{
-    if(!err){
-        res.send(docs)
-    }else{
-        res.status(404).json({message:err})
-    }})
-})
+//   app.get("/imgs",(req,res)=>{
+//     imgs.find({},(err,docs)=>{
+//     if(!err){
+//         res.send(docs)
+//     }else{
+//         res.status(404).json({message:err})
+//     }})
+// })
+// app.get("/imgs",(req,res)=>{
+//     imgs.find({},(err,docs)=>{
+//     if(!err){
+//         res.send(docs)
+//     }else{
+//         res.status(404).json({message:err})
+//     }})
+// })
 
-app.get("/imgs/:id",(req,res)=>{
-    const {id}=req.params
-    imgs.findById(id,(err,doc)=>{
-        if(!err){
-            if(doc){
-                res.send(doc)
-            }else{
-                res.status(404).json({message:"Not Found"})
-            }
-        }else{
-            res.status(500).json({message:err})
-        }
-    })
-})
+// app.get("/imgs/:id",(req,res)=>{
+//     const {id}=req.params
+//     imgs.findById(id,(err,doc)=>{
+//         if(!err){
+//             if(doc){
+//                 res.send(doc)
+//             }else{
+//                 res.status(404).json({message:"Not Found"})
+//             }
+//         }else{
+//             res.status(500).json({message:err})
+//         }
+//     })
+// })
 
 
-app.post("/imgs",(req,res)=>{
-    const img=new imgs({
-        ProductUrl:req.body.ProductUrl
-    })
-    img.save()
-    res.send("Added")
-})
-app.delete("/imgs/:id",(req,res)=>{
-    const {id}=req.params
-    imgs.findByIdAndDelete(id,(err,doc)=>{
-        if(!err){
-            res.send(doc)
-        }else{
-            res.status(404).json({message:err})
-        }
-    })
-})
+// app.post("/imgs",(req,res)=>{
+//     const img=new imgs({
+//         ProductUrl:req.body.ProductUrl
+//     })
+//     img.save()
+//     res.send("Added")
+// })
+// app.delete("/imgs/:id",(req,res)=>{
+//     const {id}=req.params
+//     imgs.findByIdAndDelete(id,(err,doc)=>{
+//         if(!err){
+//             res.send(doc)
+//         }else{
+//             res.status(404).json({message:err})
+//         }
+//     })
+// })
 
 
 
