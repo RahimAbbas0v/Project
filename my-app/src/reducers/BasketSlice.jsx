@@ -11,14 +11,17 @@ const BasketSlice =createSlice(
         initialState,
         reducers:{
             AddToBasket:(state,actions)=>{
-                if(state.value.find(x=>x.data._id===actions.payload._id)){
+                const item=JSON.parse(localStorage.getItem('item'))
+                if(state.value.find(x=>x.data._id===actions.payload._id,)){
                     state.value.forEach((elem)=>{
                         if(elem.data._id===actions.payload._id){
                             elem.counter+=1;
+                            elem.useremail=item.email
+                            elem.username=item.firstname+item.lastname
                     }})
                 }
                 else{
-                    state.value.push({counter:1,data:actions.payload})
+                    state.value.push({counter:1,data:actions.payload,useremail:item.email,username:item.firstname+item.lastname})
                 } 
                 state.count+=1
                 toast.success(`${actions.payload.ProductName} add to basket`,{

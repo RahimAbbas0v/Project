@@ -6,15 +6,17 @@ import ScrollToTopOnMount from './components/ScrollTop/ScrollTop'
 import ScrollToTop from './components/ScrollTop/ScrollTop'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css"
+import OrderId from "./context/index";
 function App() {
   
   return (
     <>
     <ToastContainer/>
     <ScrollToTopOnMount/>
+    <OrderId>
     <Navbar/>
     <Outlet/>
-    <Footer/>
+    <Footer/></OrderId>
     </>
   )
 }

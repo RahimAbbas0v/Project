@@ -1,4 +1,14 @@
 import React, { useEffect, useState } from "react";
+import {
+  MDBBtn,
+  MDBModal,
+  MDBModalDialog,
+  MDBModalContent,
+  MDBModalHeader,
+  MDBModalTitle,
+  MDBModalBody,
+  MDBModalFooter,
+} from 'mdb-react-ui-kit';
 import Table from "react-bootstrap/Table";
 import { Button } from "react-bootstrap";
 import "./Basket.css";
@@ -9,10 +19,91 @@ import { duration } from "@mui/material";
 import CoffeSection from "../../components/DetailCoffeSection/CoffeSection"
 import {DeleteFromBasket,DecreaseItem,IncreaseItem} from "../../reducers/BasketSlice"
 import {useSelector,useDispatch} from "react-redux/es/exports"
+import axios from "axios";
+import Cards from "react-credit-cards";
+import 'react-credit-cards/es/styles-compiled.css';
+class PaymentForm extends React.Component {
+  state = {
+    cvc: '',
+    expiry: '',
+    focus: '',
+    name: '',
+    number: '',
+  };
+ 
+  handleInputFocus = (e) => {
+    this.setState({ focus: e.target.name });
+  }
+  
+  handleInputChange = (e) => {
+    const { name, value,expiry,cvc } = e.target;
+    
+    this.setState({ [name]: value,[expiry]:value,[cvc]:value });
+  }
+  
+  render() {
+    return (
+      <div id="PaymentForm">
+        <Cards
+          cvc={this.state.cvc}
+          expiry={this.state.expiry}
+          focused={this.state.focus}
+          name={this.state.name}
+          number={this.state.number}
+        />
+        <form>
+        	<input
+            type="tel"
+            name="number"
+            placeholder="Card Number"
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+            maxLength={16}
+          /> <br />
+          <input
+            type="text"
+            name="name"
+            placeholder="Your Name Here"
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+            maxLength={16}
+          /> <br />
+          <div>
+          <input
+            type="number"
+            name="expiry"
+            placeholder="Valid thru "
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+            maxLength={4}
+
+          /> <br />
+             <input
+            type="text"
+            name="cvc"
+            placeholder="CVC"
+            onChange={this.handleInputChange}
+            onFocus={this.handleInputFocus}
+            maxlength="3"
+          /> 
+          </div>
+        </form>
+      </div>
+    );
+  }
+}
 function Basket() {
+  const [basicModal, setBasicModal] = useState(false);
+
+  const toggleShow = () => setBasicModal(!basicModal);
+  useEffect(()=>{
+    axios.get("http://localhost:4000/orders")
+    .then(res=>console.log(res.data))
+  },[])
   useEffect(()=>{
     Aos.init({duration:600})
   },[])
+  
   const [total,setTotal]=useState(0.0)
   const dispatch=useDispatch()
   const basket=useSelector(state=>state.basket.value)
@@ -25,6 +116,14 @@ function Basket() {
   const Increase=(itemId)=>{
     dispatch(IncreaseItem(itemId))
   }
+  console.log(basket);
+  const Buy=()=>{
+    axios.post('http://localhost:4000/orders',basket)
+    .then(res=>{
+      alert("You Buy It")
+    })
+  }
+  console.log(basket);
   return (
     <>
       <section className="basketSection">
@@ -34,8 +133,8 @@ function Basket() {
               <tr>
                 <th style={{color:"rgb(199, 155, 99)"}}>|||||||||||</th>
                 <th style={{color:"rgb(199, 155, 99)"}}>||||||||||||||||||||</th>
-                <th style={{paddingLeft:"11.1rem"}}>           Product</th>
-                <th style={{paddingLeft:"3.1rem"}}>Price</th>
+                <th id='th3' style={{paddingLeft:"7.1rem"}}>           Product</th>
+                <th  style={{paddingLeft:"3.1rem"}}>Price</th>
                 <th style={{paddingLeft:"4.1rem"}}>Quantity</th>
                 <th style={{paddingLeft:"3rem"}}>Total</th>
               </tr>
@@ -87,8 +186,29 @@ function Basket() {
               <p style={{color:"rgb(199,155,99)",paddingLeft:".5rem"}}>${(basket.reduce((total, item)=>total+(item.data.ProductPrice*item.counter),0)-3).toFixed(2)}</p>
             </div>
           </div>
-           <button id="btn2">Procced to Checkout</button></div>
+          <div style={{justifyContent:"center",textAlign:"center"}}>  <MDBBtn onClick={toggleShow} id="btn2">LAUNCH DEMO MODAL</MDBBtn></div>
+      <MDBModal show={basicModal} setShow={setBasicModal} >
+        <MDBModalDialog>
+          <MDBModalContent>
+            <MDBModalHeader>
+              <MDBModalTitle>Modal title</MDBModalTitle>
+              <MDBBtn className='btn-close' color='none' onClick={toggleShow}></MDBBtn>
+            </MDBModalHeader>
+            <MDBModalBody><PaymentForm/></MDBModalBody>
+
+            <MDBModalFooter>
+              <MDBBtn color='secondary' onClick={toggleShow}>
+                Close
+              </MDBBtn>
+              <MDBBtn onClick={Buy}>Payment</MDBBtn>
+            </MDBModalFooter>
+          </MDBModalContent>
+        </MDBModalDialog>
+      </MDBModal>
+           </div>
+           
       </section>
+      
     </>
   );
 }

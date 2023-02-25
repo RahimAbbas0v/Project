@@ -61,7 +61,6 @@ function Info() {
               message: "",
             }}
             onSubmit={(values, {resetForm}) => {
-
               resetForm()
             }}
           >

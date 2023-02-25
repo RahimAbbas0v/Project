@@ -4,7 +4,8 @@
 .basketSection {
     background-image: url("https://themewagon.github.io/coffee1/images/bg_4.jpg");
     background-attachment: fixed;
-    height: 130vh;
+    height: auto;
+    padding-bottom: 4rem;
 }
 
 .basketSection th {
@@ -131,18 +132,19 @@ td h4 {
 }
 
 .totalprice {
+    margin: auto;
+    justify-content: center;
     display: block;
     margin-top: 1rem;
-    margin-right: 10%;
     height: auto;
     text-align: left;
     justify-content: first baseline;
-    float: right;
 
 
 }
 
-#pricetable {
+#pricetable {margin: auto;
+    justify-content: center;
     padding: 1.2rem;
     width: 16rem;
     box-sizing: border-box;
@@ -200,9 +202,37 @@ td h4 {
     height: 3.3rem;
     width: 9.3rem;
 }
+
+#PaymentForm input:focus{
+    outline: none;
+}
+#PaymentForm input::placeholder{
+    font-size: 14px;
+    color: black;
+}
+#PaymentForm{
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+#PaymentForm input{
+    height: 3.3rem;
+    width: 17rem;
+    background-color: transparent;
+    outline: hidden;
+    border: none;
+    color: black;
+    border-top: hidden;
+    border-right: hidden;
+    border-radius: 0;
+    border-left: hidden;
+    border-bottom: 1px solid black;
+}
+  
 @media only screen and (max-width: 900px) {
     .totalprice {
-        float: none;
+        padding-top: 3rem;
         margin: 0 auto;
 
 text-align: center;
@@ -217,6 +247,17 @@ text-align: center;
     }
     #basketcontainer{
         padding-bottom: 4rem;
+        justify-content: space-between;
+        align-items: center;
+        display: flex;
+        padding: 0;
+    }
+    #basketcontainer tbody tr th{
+        padding: 1.4rem !important;
+    }
+    #basketcontainer thead tr #th3{
+        padding-left:11rem !important;
     }
 }
+
     

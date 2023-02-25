@@ -3,7 +3,8 @@ import { Helmet } from "react-helmet";
 import ScrollToTop  from '../../components/ScrollTop/ScrollTop';
 import LoadingScreen from 'react-loading-screen';
 import MainPage from '../../components/AdminPanel/MainPage/MainPage';
-
+import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
+import { Outlet } from 'react-router-dom';
 
 function Admin() {
   
@@ -34,7 +35,9 @@ function Admin() {
   /> 
       :
   <>
+  <AdminSideBar/>
      <MainPage/>
+     <Outlet/>
       </>
       }
 

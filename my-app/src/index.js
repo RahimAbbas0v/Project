@@ -39,6 +39,12 @@ import ResetPassword from './components/ResetPassword/ResetPassword';
 import SwitchPanel from './components/SwitchPanel/SwitchPanel'
 import Checkout from './Pages/CheckoutPage/Checkout'
 import { store } from './config/Store';
+import { PersistGate } from 'redux-persist/integration/react'
+import Admin from './Pages/AdminPanelPage/Admin';
+import AdminProduct from './components/AdminProduct/AdminProduct';
+import { persistStore } from 'redux-persist';
+import Profile from './components/UserProfile/Profile';
+let persistor = persistStore(store)
 const router = createBrowserRouter([
   {
     path: "/", 
@@ -136,8 +142,8 @@ const router = createBrowserRouter([
         element: <Checkout/>
       },
       {
-        path: "/Panel",
-        element: <SwitchPanel/>
+        path: "/User",
+        element: <Profile/>
       },
      
       {
@@ -159,12 +165,17 @@ const router = createBrowserRouter([
         ]
       },
     ]
-  },
+  },{
+        path: "/Admin",
+        element: <SwitchPanel/>,
+      },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
   <RouterProvider router={router} />
+  </PersistGate>
   </Provider>
   
 );

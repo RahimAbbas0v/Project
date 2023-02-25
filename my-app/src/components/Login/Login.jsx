@@ -5,6 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import { Link, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup';
+import { useHistory } from 'react-router'
 import axios from 'axios'
 const SignupSchema = Yup.object().shape({
     email: Yup.string()
@@ -56,19 +57,21 @@ const navigate=useNavigate()
           window.localStorage.setItem("loggedIn", true);
           
             userData.filter(x=>values.email==x.email && x.UserType==='Admin').map((item)=>{
-              window.localStorage.setItem("item",item.UserType);
+              window.localStorage.setItem("item",JSON.stringify(item));
               if(item.UserType=="Admin"){
-                navigate("/panel")
+                window.location.href = "http://localhost:3000"
+
+
               }
               
           })
 
           userData.filter(x=>values.email==x.email && x.UserType==='User').map((item)=>{
-            window.localStorage.setItem("item",item.UserType);
+            window.localStorage.setItem("item",JSON.stringify(item));
             if(item.UserType=="User"){
-              navigate("/")
+              window.location.href = "http://localhost:3000"
             }
-        })
+          })
           
         }
         })

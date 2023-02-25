@@ -22,7 +22,11 @@ function Home() {
   useEffect(()=>{
     setLoading(true)
     setTimeout(()=>{
-      setLoading(false)},900)},[])
+      setLoading(false)},1000)},[])
+      useEffect(()=>{
+       
+      },[])
+      
   return (
     <>
       <Helmet>
@@ -35,7 +39,7 @@ function Home() {
         />
       </Helmet>
      
-      {
+      { 
         loading ?
   <LoadingScreen 
     loading={true}

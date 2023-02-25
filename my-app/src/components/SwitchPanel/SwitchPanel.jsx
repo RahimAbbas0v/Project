@@ -1,12 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
 import Home from '../../Pages/HomePage/Home'
-import AdminPanel from "../../components/AdminPanel/MainPage/MainPage";
+import AdminPanel from "../../Pages/AdminPanelPage/Admin";
 export default function SwitchPanel() {
-    const [item, setItem] = useState([])
-    useEffect(()=>{
-
-        setItem(localStorage.getItem('item'))
-    },[])
-    console.log(item);
-  return item=="Admin" ? <AdminPanel/> : <h4>This Page For Admin</h4>;
+  const [item, setItem] = useState([])
+  useEffect(()=>{
+      setItem(JSON.parse(localStorage.getItem('item')))
+  },[])
+  return item.UserType==="Admin" ? <AdminPanel/> :<h3>OnlyfdfAdmin</h3>;
 }

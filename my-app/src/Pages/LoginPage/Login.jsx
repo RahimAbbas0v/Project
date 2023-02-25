@@ -10,7 +10,7 @@ function Login() {
   useEffect(()=>{
     setLoading(true)
     setTimeout(()=>{
-      setLoading(false)},800)},[])
+      setLoading(false)},1000)},[])
   return (
     <>
     <Helmet>

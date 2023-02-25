@@ -83,6 +83,9 @@ transition: 0.4s;
     text-transform: uppercase;
     letter-spacing: 5px;
 }
+#dropdownstyle:hover{
+    background-color: #c49b63;
+}
 #shopicon{
     color: white;
     cursor: pointer;
@@ -101,9 +104,13 @@ transition: 0.4s;
 #navicon{
     font-size: 1.5rem;
 }
+
 #link2{
     color: black;
     text-decoration: none;
+}
+.active2{
+    color: #c49b63 !important;
 }
 @media only screen and (max-width: 1000px) {
     .navbar label{
