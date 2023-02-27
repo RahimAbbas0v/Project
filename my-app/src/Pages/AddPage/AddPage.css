@@ -1,0 +1,34 @@
+#AddForm {
+    width: 50%;
+    display: block;
+    margin: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -52%);
+}
+#AddDiv{
+   display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#AddForm input {
+    margin: .6rem;
+    height: 3rem;
+    width: 100%;
+}
+
+#AddForm button {
+    justify-content: center;
+    text-align: center;
+    width: 11rem;
+    color: green;
+    background: white;
+    height: 3rem;
+}
+
+#submitBtn {
+
+    text-align: center;
+}

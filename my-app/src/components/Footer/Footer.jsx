@@ -99,10 +99,10 @@ function Footer() {
           <div className="serviceside">
             <h4>SERVICES</h4>
             <ul>
-              <li>Cooked</li>
-              <li>Deliver</li>
-              <li>Quality Foods</li>
-              <li>Mixed</li>
+              <li id="animationLI" >Cooked</li>
+              <li id="animationLI" >Deliver</li>
+              <li id="animationLI" >Quality Foods</li>
+              <li id="animationLI" >Mixed</li>
             </ul>
           </div>
           <div className="questionside">
@@ -129,6 +129,7 @@ function Footer() {
             </div>
           </div>
         </div>
+        <p id="footer-final">We have been at your service since 1998</p>
       </footer>
     </>
   );

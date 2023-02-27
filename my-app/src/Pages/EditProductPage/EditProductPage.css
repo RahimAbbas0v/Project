@@ -1,0 +1,17 @@
+#ProductEdit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+#ProductEdit input{
+    width: 11rem;
+    height: 3rem;
+    margin: 1rem;
+}
+#editbtn{
+    width: 11rem;
+    height: 3rem;
+    background-color: black;
+    color: white;
+}

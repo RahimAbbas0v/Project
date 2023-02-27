@@ -11,10 +11,15 @@ import "react-datepicker/dist/react-datepicker.css";
 import Aos from "aos"
 import 'aos/dist/aos.css'
 import { duration } from "@mui/material";
+import axios from "axios";
 function Info() {
   useEffect(()=>{
     Aos.init({duration:500})
   },[])
+  const [user, setUser] = useState([])
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('item')))
+  }, [])
   return (
     <>
       
@@ -59,8 +64,15 @@ function Info() {
               clock: "",
               phone: "",
               message: "",
+              email:"636g634f6f@gmail.com",
             }}
             onSubmit={(values, {resetForm}) => {
+              if(values.name=="" || values.lastname=="" || values.date=="" || values.clock=="" || values.phone=="" || values.message==""){
+                alert("Fulfid inputs")
+              }else{
+                axios.post("http://localhost:4000/reservation",values)
+                .then(res=>console.log(res.data))
+              }
               resetForm()
             }}
           >
@@ -95,6 +107,13 @@ function Info() {
                     value={props.values.date}
                     name="date"
                   />
+                 <input
+                     style={{color:"white",display:"none"}}
+                    type="email"
+                    value={user.email}
+                    name="email"
+                  />
+                
                   <select
                   style={{color:"white"}}
                     class="form-select"

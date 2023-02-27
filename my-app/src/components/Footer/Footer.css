@@ -3,8 +3,11 @@
 
 
 footer {
-    padding: 7rem;
-
+    height: auto;
+    padding-top: 4rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+padding-bottom: 2.8rem;
     background-color: #120f0f;
 }
 
@@ -55,7 +58,11 @@ footer {
     padding-top: 2rem;
     gap: 20px;
 }
-
+#animationLI:hover{
+    padding-left: 2rem;
+    transition: 1s;
+    color: #c49b63;
+}
 .blogside h4 {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 15px;
@@ -176,7 +183,12 @@ margin-top: -.2rem;
     color: rgb(255, 255, 255, 0.7);
     margin-top: -.4rem;
 }
-
+#footer-final{
+    text-align: center;
+    color: white;
+    font-size: 1.1rem;
+    padding-top: 5rem;
+}
 @media only screen and (max-width: 1181px) {
     #footercontainer {
         grid-template-columns: repeat(2,1fr);

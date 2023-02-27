@@ -84,6 +84,8 @@ transition: 0.4s;
     letter-spacing: 5px;
 }
 #dropdownstyle:hover{
+    padding-left: 2rem;
+    transition: .9s;
     background-color: #c49b63;
 }
 #shopicon{

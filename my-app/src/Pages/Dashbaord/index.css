@@ -1,0 +1,22 @@
+#ordertable td{
+color: black;
+text-align: center;
+margin: 0;
+padding: 0;
+vertical-align: middle;
+}
+#ordertable tr{
+    color: black;
+    text-align: center;
+    }
+#ordertable{
+    width: auto;
+    border-radius: 15px;
+    overflow-y: auto;
+}
+#deliconbtn:hover{
+    color: red;
+    transition: .6s;
+    scale: 1.1;
+    cursor: pointer;
+}

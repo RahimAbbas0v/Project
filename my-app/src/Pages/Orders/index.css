@@ -1,0 +1,11 @@
+#mdtable{
+    width: 100%;
+    height: auto;
+}
+#mdtable td{
+    color: black;   text-align: center;
+}
+#mdtable th{
+    color: black;
+    text-align: center;
+}

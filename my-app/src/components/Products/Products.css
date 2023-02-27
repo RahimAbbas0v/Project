@@ -37,7 +37,7 @@
 #productsection{
     background-image: url('https://themewagon.github.io/coffee1/images/bg_4.jpg');
     background-attachment: fixed;
-    height: 140vh;
+    height: auto;
     
 }
 .buttons{
@@ -82,6 +82,80 @@ border-radius: 0;
     transition: .5s;
     color: black;
 }
+.activebtn{
+    color: black;
+background-color: rgb(196, 155, 99) !important;
+}
+
+
+.cards4{
+    margin: auto;
+    padding-top: 1rem;
+    margin-top: 7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center; flex-wrap: wrap;
+    gap: 30px;
+}
+.card4 img{
+    cursor: pointer;
+    height: 260px;
+    width: 280px;
+}
+.card4 h3{
+    cursor: pointer;
+
+    padding-top: 1.5rem;
+    font-size:19px ;
+    font-weight:400 ;
+    line-height:25px;
+    color:white ;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.card4 p{
+    font-size:15px ;
+    font-weight:300 ;
+    line-height:20px ;
+    color:rgb(128, 128, 128) ;
+    font-family: 'Poppins', sans-serif;
+    width: 16rem;
+    margin: auto;
+    margin-top: 1rem;
+
+}
+.card4 p span{
+    margin-top: 1rem;
+    font-size:18px ;
+    font-weight:300 ;
+    line-height:32px ;
+    color:white;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+}
+.card4 button{
+    cursor: pointer;
+
+    margin-top: 1rem;
+    width: 7.5rem;
+    height: 2.3rem;
+    text-align: center;
+    font-size:13px ;
+    font-weight:400 ;
+    line-height:19px ;
+    color:rgb(199, 155, 99);
+    font-family: 'Poppins', sans-serif;
+    background-color: transparent;
+    border-color: rgb(199, 155, 99);
+
+}
+.card4 button:hover{
+    background-color: rgb(196, 155, 99);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    border-color: rgb(199, 155, 99);
+    transition: .7s;
+}    
+
 @media only screen and (max-width: 1000px) {
 
     #productsection{

@@ -4,6 +4,8 @@ import 'aos/dist/aos.css'
 import { duration } from "@mui/material"; 
 import "./Coffe.css";
 import axios from "axios"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 import {useSelector,useDispatch} from "react-redux/es/exports" ;
 import {AddToBasket} from "../../reducers/BasketSlice"
 function Coffes() {
@@ -11,8 +13,11 @@ function Coffes() {
   const count=useSelector(state=>state.basket.count)
   const dispatch=useDispatch()
   const [data,setData]=useState([])
-  const [beef,setBeef]=useState([])
-
+  const [user, setUser] = useState([])
+  const [smShow, setSmShow] = useState(false);
+    useEffect(()=>{
+        setUser(JSON.parse(localStorage.getItem('item')))
+    },[])  
   useEffect(()=>{
     axios.get("http://localhost:4000/datas")
     .then(res=>setData(res.data))
@@ -20,8 +25,9 @@ function Coffes() {
   useEffect(()=>{
     Aos.init({duration:500})
   },[])
-  const AddBasket=(item)=>{
-    dispatch(AddToBasket(item))
+  
+  const AddBasket=(product)=>{
+       dispatch(AddToBasket(product))
   }
 
   return (
@@ -48,10 +54,24 @@ function Coffes() {
               <p>
                 <span>${item.ProductPrice}</span>
               </p>
-              <button onClick={()=>AddBasket(item)}>Add to Cart</button>
+              <button onClick={() => {user ?  AddBasket(item) : setSmShow(true) }}>Add to Cart</button>
+
+      <Modal
+        size="sm"
+        show={smShow}
+        onHide={() => setSmShow(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm" style={{textAlign:"center",color:"#351908"}}>
+            Coffe Blend
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>You need an account for shopping</Modal.Body>
+      </Modal>
             </div>
           </div>))}
-          
+
         </div>
       </div>
     </section>

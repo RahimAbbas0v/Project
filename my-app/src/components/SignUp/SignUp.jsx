@@ -39,7 +39,6 @@ const SignupSchema = Yup.object().shape({
     .matches(/994(40|5[015]|60|7[07])\d{7}/, "Phone Number is not correct"),
   address: Yup.string()
     .min(10, 'Address must be more than 10 characters')
-    .max(30, 'Too Long!')
     .required('Address Is Empty'),
 });
 
@@ -50,14 +49,12 @@ function SignUp() {
       <section id='loginsection'>
         <div className="container" id='signupcontainer'>
           <Formik
-            initialValues={{ email: '', password: '', firstname: '', phone: "", lastname: '', address: '', UserType: '', Key: '' }}
+            initialValues={{ email: '', password: '', firstname: '', phone: "", lastname: '', address: '', UserType: 'User', }}
             validationSchema={SignupSchema}
             onSubmit={(values, { resetForm }) => {
-              if(values.UserType=="Admin" && values.Key!='Admin123'){
-                alert("Key Is Wrong")
-              }else{
 
-            
+
+
               if (values.firstname == "" || values.lastname == "" || values.email == "" || values.password == "" || values.phone == "" || values.address == "") {
                 alert("its empty")
               } else {
@@ -69,9 +66,10 @@ function SignUp() {
                       window.location.href = "./"
                     }
                   })
-              }  
-              resetForm()
-              console.log(values);}
+
+                resetForm()
+                console.log(values);
+              }
             }}
           >
             {({
@@ -87,38 +85,6 @@ function SignUp() {
                   <img src="https://images.getbento.com/accounts/64b147bfe7cdcd17347051a0bc071733/media/images/61754Main_Logo.png" alt="" />
                 </div >
                 <h3>SIGN UP</h3>
-                <div className="radio">
-                  <label htmlFor="">User
-                    <input
-                      type="radio"
-                      name="UserType"
-                      onChange={handleChange}
-                      value="User"
-                      placeholder='User'
-                    /></label>
-                  <label htmlFor="">Admin
-                    <input
-                      type="radio"
-                      name="UserType"
-                      onChange={handleChange}
-                      value="Admin"
-                      placeholder='User'
-                    /></label></div>
-
-
-                {values.UserType == "Admin" ?
-                  <div id='firstrow'>
-                    <KeyIcon id="nameicon" />
-                    <input
-                      type="text"
-                      name="Key"
-                      onChange={handleChange}
-                      value={values.Key}
-                      placeholder="Admin Key"
-                    /></div> : null
-
-                }
-
                 <div id='firstrow'>
                   <AccountCircleIcon id="nameicon" />
                   <input

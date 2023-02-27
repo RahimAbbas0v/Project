@@ -86,6 +86,16 @@ app.delete("/datas/:id", (req, res) => {
     }
   })
 })
+app.put("/datas/:id", (req, res) => {
+  const { id } = req.params
+  datas.findByIdAndUpdate(id, req.body, (err, doc) => {
+    if (!err) {
+      res.status(200).json({message:"Product Uptaded"})
+    }else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
 
 
 require("./UserDetails")
@@ -147,6 +157,40 @@ app.get("/userData", (req, res) => {
       res.send(docs)
     } else {
       res.status(404).json({ message: err })
+    }
+  })
+})
+app.delete("/userData/:id", (req, res) => {
+  const { id } = req.params
+  User.findByIdAndDelete(id, (err, doc) => {
+    if (!err) {
+      res.send(doc)
+    } else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
+app.put("/userData/:id", (req, res) => {
+  const { id } = req.params
+  User.findByIdAndUpdate(id, req.body, (err, doc) => {
+    if (!err) {
+      res.status(200).json({message:"Product Uptaded"})
+    }else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
+app.get("/userData/:id", (req, res) => {
+  const { id } = req.params
+  User.findById(id, (err, doc) => {
+    if (!err) {
+      if (doc) {
+        res.send(doc)
+      } else {
+        res.status(404).json({ message: "Not Found" })
+      }
+    } else {
+      res.status(500).json({ message: err })
     }
   })
 })
@@ -277,7 +321,31 @@ app.get("/orders", (req, res) => {
     }
   })
 })
+app.get("/orders/:id", (req, res) => {
+  const { id } = req.params
+  Orders.findById(id, (err, doc) => {
+    if (!err) {
+      if (doc) {
+        res.send(doc)
+      } else {
+        res.status(404).json({ message: "Not Found" })
+      }
+    } else {
+      res.status(500).json({ message: err })
+    }
+  })
+})
 
+app.delete("/orders/:id", (req, res) => {
+  const { id } = req.params
+  Orders.findByIdAndDelete(id, (err, doc) => {
+    if (!err) {
+      res.send(doc)
+    } else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
 app.post("/orders", (req, res) => {
   const order = new Orders({
     basket:req.body,
@@ -287,6 +355,80 @@ app.post("/orders", (req, res) => {
 })
 
 
+const reservationSchema = new Schema({
+  name: { type: String, required: true },
+  lastname: { type: String, required: true },
+  date: { type: String, required: true },
+  clock: { type: String, required: true },
+  phone: { type: String, required: true },
+  message: { type: String, required: true },
+  email: { type: String,required:true },
+}, {
+  timestamps: true
+})
+const reservation = mongoose.model('reserv', reservationSchema)
+
+
+
+app.get("/reservation", (req, res) => {
+  reservation.find({}, (err, docs) => {
+    if (!err) {
+      res.send(docs)
+    } else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
+
+app.get("/reservation/:id", (req, res) => {
+  const { id } = req.params
+  reservation.findById(id, (err, doc) => {
+    if (!err) {
+      if (doc) {
+        res.send(doc)
+      } else {
+        res.status(404).json({ message: "Not Found" })
+      }
+    } else {
+      res.status(500).json({ message: err })
+    }
+  })
+})
+
+
+app.post("/reservation", (req, res) => {
+  const reserv = new reservation({
+    name: req.body.name,
+    lastname: req.body.lastname,
+    date: req.body.date,
+    clock: req.body.clock,
+    phone: req.body.phone,
+    message: req.body.message,
+    email: req.body.email,
+  })
+  reserv.save()
+  res.send("Added")
+})
+app.delete("/reservation/:id", (req, res) => {
+  const { id } = req.params
+  reservation.findByIdAndDelete(id, (err, doc) => {
+    if (!err) {
+      res.send(doc)
+    } else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
+app.put("/reservation/:id", (req, res) => {
+  const { id } = req.params
+  reservation.findByIdAndUpdate(id, req.body, (err, doc) => {
+    if (!err) {
+      res.status(200).json({message:"Product Uptaded"})
+    }else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
 
 const PORT = process.env.PORT
 const url = process.env.CONNECTION_URL.replace('<password>', process.env.PASSWORD)

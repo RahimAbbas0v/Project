@@ -5,6 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import { Link } from 'react-router-dom'
 import * as Yup from 'yup';
+import {useNavigate} from "react-router-dom"
 import axios from 'axios'
 const SignupSchema = Yup.object().shape({
     email: Yup.string()
@@ -18,6 +19,10 @@ const SignupSchema = Yup.object().shape({
   });
 
 function Login() {
+  const navigate=useNavigate()
+  const backBtn =()=>{
+    navigate('/login')
+  }
   return (
     <>
     <section id='loginsection' className='loginsection'>
@@ -31,6 +36,7 @@ function Login() {
         }else{
           axios.post('http://localhost:4000/forgot-password',values)
           .then((res)=>console.log(res.data))
+          alert("Check Your Email Address")
         }
        resetForm()
      }}
@@ -61,6 +67,9 @@ function Login() {
             {errors.email && touched.email? <div style={{color:"red",fontSize:12}}>{errors.email}</div>:null}
            </div>
            <div></div>
+           <button onClick={backBtn}>
+             Go Back
+           </button>
            <button type="submit" disabled={isSubmitting}>
              Submit
            </button> <br />

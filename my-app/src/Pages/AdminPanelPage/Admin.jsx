@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Helmet } from "react-helmet";
 import ScrollToTop  from '../../components/ScrollTop/ScrollTop';
 import LoadingScreen from 'react-loading-screen';
-import MainPage from '../../components/AdminPanel/MainPage/MainPage';
-import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
+// import MainPage from '../../components/AdminPanel/MainPage/MainPage';
+// import AdminSideBar from '../../components/AdminSideBar/AdminSideBar';
+import Dashboard from '../Dashbaord/index';
 import { Outlet } from 'react-router-dom';
-
+import AppHeader from '../../components/AppHeader';
+import AppFooter from '../../components/AppFooter';
+import SideMenu from '../../components/SideMenu/index'
+import PageContent from "../../components/PageContent/index"
+import "./Admin.css"
 function Admin() {
   
   const [loading,setLoading]=useState(false)
@@ -35,9 +40,13 @@ function Admin() {
   /> 
       :
   <>
-  <AdminSideBar/>
-     <MainPage/>
-     <Outlet/>
+  <div className="App">
+  <AppHeader/>
+  <div className="SideMenuAndPageContent">
+        <SideMenu/>
+        <PageContent/>
+      </div>
+  </div>
       </>
       }
 

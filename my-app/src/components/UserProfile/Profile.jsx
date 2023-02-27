@@ -18,36 +18,41 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
-
+import { UserOutlined } from '@ant-design/icons';
+import { Button, Modal, Input } from "antd";
+import { EditOutlined, DeleteOutlined,EyeOutlined } from "@ant-design/icons";
+import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export default function Basic() {
-    const [item1, setItem1] = useState([])
-    const [data, setdata] = useState([])
-    const [filterdata, setFilterdata] = useState(false)
-    const [basicModal, setBasicModal] = useState(false);
-    const toggleShow = () => setBasicModal(!basicModal);
+  const [item1, setItem1] = useState([])
     useEffect(()=>{
         setItem1(JSON.parse(localStorage.getItem('item')))
     },[])  
-  useEffect(()=>{
-    
-axios.get("http://localhost:4000/orders")
-.then(res=>setdata(res.data))
-  },[])
-  useEffect(()=>{
-
-   data.filter(x=>x.basket.map((item)=>{
-      if(item.useremail==item1.email ){
-        console.log("sas")
-      }
-}));
-  },[])
-    
-  useEffect(()=>{
-     setFilterdata( data
-  .filter(x=>x.basket.map(x=>x.useremail==item1.email)))
- console.log(filterdata);
-  },[])
+    const [loading, setLoading] = useState(false);
+    const [dataSource, setDataSource] = useState([]);
+  
+    useEffect(() => {
+      setLoading(true);
+      axios.get('http://localhost:4000/reservation')
+      .then(res=>{setDataSource(res.data);
+      setLoading(false)})
+    }, []);
+    const navigate=useNavigate()
+  
+    const handleDelete= (record) => {
+      Modal.confirm({
+        title: "Are you sure, you want to delete this student record?",
+        okText: "Yes",
+        okType: "danger",
+        onOk: () => {
+          setDataSource((pre) => {
+            axios.delete(`http://localhost:4000/userData/${record._id}`)
+            return pre.filter((student) => student._id !== record._id);
+          });
+        },
+      });
+    };
 
   return (
     <>
@@ -91,7 +96,65 @@ axios.get("http://localhost:4000/orders")
         </MDBRow>
 
       </MDBContainer>
-    </div></section>
+    </div>
+    <Space size={20} direction="vertical">
+      <Typography.Title level={4}>Customers</Typography.Title>
+      <Table
+      id="customTable"
+        loading={loading}
+        columns={[
+          {
+            title: "UserId",
+            dataIndex: "_id",
+          },
+          {
+            title: "First Name",
+            dataIndex: "firstname",
+          },
+          {
+            title: "LastName",
+            dataIndex: "lastname",
+          },
+          {
+            title: "Email",
+            dataIndex: "email",
+          },
+          {
+            title: "Phone",
+            dataIndex: "phone",
+          },
+
+          {
+            title: "address",
+            dataIndex: "address",
+          },
+          {
+            title: "UserType",
+            dataIndex: "UserType",
+          },
+          ,{
+            title: "Actions",
+            render: (record) => {
+              return (
+                <>
+                  <DeleteOutlined
+                  onClick={() => {
+                    handleDelete(record);
+                  }}
+                   id="settingsIcon"
+                    style={{ color: "red", marginLeft: 12 }}
+                  />
+                </>
+              );
+            },
+          },
+        ]}
+        dataSource={dataSource}
+        pagination={{
+          pageSize: 5,
+        }}
+      ></Table>
+    </Space></section>
    
         
 

@@ -1,0 +1,11 @@
+#customerEdit{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+#customerEdit input{
+    width: 11rem;
+    height: 3rem;
+    margin: 1rem;
+}

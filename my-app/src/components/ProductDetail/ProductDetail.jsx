@@ -18,25 +18,13 @@ function ProductDetail() {
       .get(`http://localhost:4000/datas/${Id}`)
       .then(res=>setData(res.data))
   },[]);
-  function incrementCount() {
-    count = count + 1;
-    setCount(count);
-  }
+
   const dispatch=useDispatch()
   const basket=useSelector(state=>state.basket.value)
   const handledelete=(itemId)=>{
     dispatch(DeleteFromBasket(itemId))
   }
-  function decrementCount() {
-    if (count >= 2) {
-      count = count - 1;
-      setCount(count);
-    } else {
-      count = 1;
-      setCount(count);
-    }
-  }
-  console.log(count);
+  
   const navigate=useNavigate()
   const handleBack=()=>{
     navigate("/shop")
@@ -81,11 +69,6 @@ function ProductDetail() {
               <option value="Extra Large">Extra Large</option>
             </select>{" "}
             <br />
-            <div className="countdiv">
-              <span onClick={decrementCount}>-</span>
-              <span style={{ width: "7rem" }}>{count}</span>
-              <span onClick={incrementCount}>+</span>
-            </div>
             <div style={{display:"flex",gap:"30px"}}>
             <button type="submit" onClick={()=>AddBasket(data)}>Add to Cart</button>
             <button type="submit" onClick={handleBack} style={{background:"transparent",borderColor:"white",color:"white"}}>Go back</button></div>

@@ -1,0 +1,40 @@
+#productTable td {
+    color: black;
+}
+
+#productTable {
+    width: 100%;
+    display: block;
+}
+
+#productTable img {
+    height: 90px;
+}
+
+.AddDiv {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#addProduct {
+    border-radius: 10px;
+    margin: 1rem;
+    height: 3rem;
+    width: 11rem;
+    border: 1px solid #1677ff;
+    color: #1677ff;
+    background-color: #e6f4ff;
+    text-align: center;
+}
+#settingsIcon{
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+#addProduct:hover {
+
+    color: green;
+    transition: .5s;
+    border: 1px solid green;
+
+}

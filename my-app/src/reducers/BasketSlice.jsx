@@ -21,7 +21,7 @@ const BasketSlice =createSlice(
                     }})
                 }
                 else{
-                    state.value.push({counter:1,data:actions.payload,useremail:item.email,username:item.firstname+item.lastname})
+                    state.value.push({counter:1,data:actions.payload,useremail:item.email, username:item.firstname+item.lastname})
                 } 
                 state.count+=1
                 toast.success(`${actions.payload.ProductName} add to basket`,{
@@ -54,18 +54,14 @@ const BasketSlice =createSlice(
                  }
                 }) 
              },
-            // IncrementByUser:(state,actions,count)=>{
-            //     state.value.forEach((elem)=>{
-            //         if(elem.data._id==actions.payload._id){
-            //             elem.counter+=
-            //             state.count+=count
-            //         }})
-            //     state.value=state.value+actions.payload
-            // },
-            // DecrementByUser:(state,actions)=>{
-            //     state.value=state.value-actions.payload
-            // }
-    
+            IncrementByUser:(state,actions,count)=>{
+                state.value.forEach((elem)=>{
+                    if(elem.data._id==actions.payload){
+                        elem.counter+=actions.payload.count
+                        state.count+=actions.payload.count
+                    }})
+                state.value=state.value+actions.payload
+            },
         }
     }
 )
