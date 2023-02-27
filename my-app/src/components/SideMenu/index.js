@@ -50,6 +50,12 @@ function SideMenu() {
             icon: <UserOutlined />,
           },
           
+          {
+            label: "Contact Requests",
+            key: "/admin/requests",
+            icon: <UserOutlined />,
+          },
+          
         ]}
       ></Menu>
     </div>

@@ -66,8 +66,8 @@ function CustomerEdit() {
           type="text"
           name="fname"
           onChange={handlefirstname}
-          class="form-control"
           defaultValue={fname}
+          class="form-control"
           aria-label="Default"
           aria-describedby="inputGroup-sizing-default"
         />

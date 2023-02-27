@@ -1,0 +1,20 @@
+#error{
+    background-image:url('https://cdn.vectorstock.com/i/1000x1000/39/51/error-404-page-not-found-vector-14463951.webp') ;
+    height: 58vh;
+    padding-bottom: 5rem;
+    background-size: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -52%);
+    margin: auto;
+    width: 65vh;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+}
+#errSection{
+background-color: rgb(225,229,234);
+height: 100vh;
+}

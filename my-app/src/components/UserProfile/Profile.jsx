@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { MDBCard, MDBCardTitle, MDBCardText, MDBCardBody, MDBCardImage, } from 'mdb-react-ui-kit';
-import { MDBTable, MDBTableHead, MDBTableBody } from 'mdb-react-ui-kit';
 import './Profile.css'
 import {useSelector,useDispatch} from "react-redux/es/exports" ;
 import axios from 'axios';
@@ -18,11 +17,38 @@ import {
   MDBRow,
   MDBTypography,
 } from "mdb-react-ui-kit";
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import { UserOutlined } from '@ant-design/icons';
 import { Button, Modal, Input } from "antd";
 import { EditOutlined, DeleteOutlined,EyeOutlined } from "@ant-design/icons";
-import { Avatar, Rate, Space, Table, Typography } from "antd";
+import { Avatar, Rate, Typography,Space } from "antd";
 import { useNavigate } from "react-router-dom";
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
 
 export default function Basic() {
   const [item1, setItem1] = useState([])
@@ -39,34 +65,33 @@ export default function Basic() {
       setLoading(false)})
     }, []);
     const navigate=useNavigate()
-  
-    const handleDelete= (record) => {
+  const [reserv,setReserv]=useState([])
+console.log(reserv);
+    const handleDelete= (_id) => {
       Modal.confirm({
-        title: "Are you sure, you want to delete this student record?",
+        title: "Are you sure, you want to cancel your reservation?",
         okText: "Yes",
         okType: "danger",
         onOk: () => {
-          setDataSource((pre) => {
-            axios.delete(`http://localhost:4000/userData/${record._id}`)
-            return pre.filter((student) => student._id !== record._id);
-          });
+          axios.delete(`http://localhost:4000/reservation/${_id}`)
+          .then(res=>setDataSource([...dataSource].filter(x=>x._id!==res.data._id)))
         },
       });
     };
-
   return (
     <>
-    <section>
-    <div  id="Profilesection">
+    <section id="Profilesection">
+    <div  >
       <MDBContainer >
         <MDBRow className="justify-content-center" >
           <MDBCol md="9" lg="7" xl="5" className="mt-5">
             <MDBCard style={{ borderRadius: '15px' }} id="profile">
               <MDBCardBody >
-                <div className="text-black"id="textb;ack">
+                <div className="text-black" id="textback">
                   <div className="flex-shrink-0">
                     <MDBCardImage
                       style={{ width: '180px', borderRadius: '10px' }}
+                      id='userimg'
                       src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp'
                       alt='Generic placeholder image'
                       fluid />
@@ -79,7 +104,7 @@ export default function Basic() {
                     id='bg-brown2'
                       style={{ backgroundColor: '#efefef' }}>
                       <div>
-                        <p className="small text-muted mb-1">Phone Number</p>
+                        <p className="small text-muted mb-1" >Phone Number</p>
                         <p className="mb-0">{item1.phone}</p>
                       </div> <br />
                       <div className="px-3">
@@ -97,64 +122,54 @@ export default function Basic() {
 
       </MDBContainer>
     </div>
-    <Space size={20} direction="vertical">
-      <Typography.Title level={4}>Customers</Typography.Title>
-      <Table
-      id="customTable"
-        loading={loading}
-        columns={[
-          {
-            title: "UserId",
-            dataIndex: "_id",
-          },
-          {
-            title: "First Name",
-            dataIndex: "firstname",
-          },
-          {
-            title: "LastName",
-            dataIndex: "lastname",
-          },
-          {
-            title: "Email",
-            dataIndex: "email",
-          },
-          {
-            title: "Phone",
-            dataIndex: "phone",
-          },
+    <TableContainer component={Paper} id="reservContainer">
+      <Table sx={{ minWidth: 700 }} aria-label="customized table" id="reservTable">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell align='center'>First Name</StyledTableCell>
+            <StyledTableCell align='center'>Last Name</StyledTableCell>
+            <StyledTableCell align='center'>Phone Number</StyledTableCell>
+            <StyledTableCell align='center'>Date</StyledTableCell>
+            <StyledTableCell align='center'>Clock</StyledTableCell>
+            <StyledTableCell align='center'>Message</StyledTableCell>
+            <StyledTableCell align='center'>Cancel Reservation</StyledTableCell>
 
-          {
-            title: "address",
-            dataIndex: "address",
-          },
-          {
-            title: "UserType",
-            dataIndex: "UserType",
-          },
-          ,{
-            title: "Actions",
-            render: (record) => {
-              return (
-                <>
-                  <DeleteOutlined
-                  onClick={() => {
-                    handleDelete(record);
-                  }}
+
+          </TableRow>
+        </TableHead>
+        <TableBody>
+
+              {
+                dataSource.filter((x)=>x.email===item1.email)
+                .map(item=>(
+            <StyledTableRow >
+              <StyledTableCell align='center'>{item.email}</StyledTableCell>
+              <StyledTableCell align='center'>{item._id}</StyledTableCell>
+              {
+                item.name.map((elem)=>(
+                  <>
+<StyledTableCell align='center'>+{elem.phone}</StyledTableCell>
+              <StyledTableCell align='center'>{elem.date}</StyledTableCell>
+              <StyledTableCell align='center'>{elem.clock}</StyledTableCell>
+              <StyledTableCell align='center'>{elem.message}</StyledTableCell></>
+                ))}
+              <StyledTableCell align='center'>
+             <DeleteOutlined
+                 onClick={()=>handleDelete(item._id)}
                    id="settingsIcon"
                     style={{ color: "red", marginLeft: 12 }}
-                  />
-                </>
-              );
-            },
-          },
-        ]}
-        dataSource={dataSource}
-        pagination={{
-          pageSize: 5,
-        }}
-      ></Table>
-    </Space></section>
+                  /></StyledTableCell>
+              
+
+
+
+            </StyledTableRow> ))
+              }
+   
+        </TableBody>
+      </Table>
+    </TableContainer>
+    </section>
    
         
 

@@ -356,13 +356,8 @@ app.post("/orders", (req, res) => {
 
 
 const reservationSchema = new Schema({
-  name: { type: String, required: true },
-  lastname: { type: String, required: true },
-  date: { type: String, required: true },
-  clock: { type: String, required: true },
-  phone: { type: String, required: true },
-  message: { type: String, required: true },
-  email: { type: String,required:true },
+  name: { type: Array, required: true },
+  email:{type:String,required:true}
 }, {
   timestamps: true
 })
@@ -399,12 +394,8 @@ app.get("/reservation/:id", (req, res) => {
 app.post("/reservation", (req, res) => {
   const reserv = new reservation({
     name: req.body.name,
-    lastname: req.body.lastname,
-    date: req.body.date,
-    clock: req.body.clock,
-    phone: req.body.phone,
-    message: req.body.message,
-    email: req.body.email,
+    email:req.body.email
+
   })
   reserv.save()
   res.send("Added")
@@ -429,6 +420,77 @@ app.put("/reservation/:id", (req, res) => {
     }
   })
 })
+
+const contactsSchema = new Schema({
+  name: { type: String, required: true },
+  email:{type:String,required:true},
+  subject: { type: String, required: true },
+  message:{type:String,required:true},
+}, {
+  timestamps: true
+})
+const contacts = mongoose.model('contactRequest', contactsSchema)
+
+app.get("/contacts", (req, res) => {
+  contacts.find({}, (err, docs) => {
+    if (!err) {
+      res.send(docs)
+    } else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
+
+app.get("/contacts/:id", (req, res) => {
+  const { id } = req.params
+  contacts.findById(id, (err, doc) => {
+    if (!err) {
+      if (doc) {
+        res.send(doc)
+      } else {
+        res.status(404).json({ message: "Not Found" })
+      }
+    } else {
+      res.status(500).json({ message: err })
+    }
+  })
+})
+
+
+app.post("/contacts", (req, res) => {
+  const contact = new contacts({
+    name: req.body.name,
+    email:req.body.email,
+    subject: req.body.subject,
+    message:req.body.message,
+
+
+  })
+  contact.save()
+  res.send("Added")
+})
+app.delete("/contacts/:id", (req, res) => {
+  const { id } = req.params
+  contacts.findByIdAndDelete(id, (err, doc) => {
+    if (!err) {
+      res.send(doc)
+    } else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
+app.put("/contacts/:id", (req, res) => {
+  const { id } = req.params
+  contacts.findByIdAndUpdate(id, req.body, (err, doc) => {
+    if (!err) {
+      res.status(200).json({message:"Product Uptaded"})
+    }else {
+      res.status(404).json({ message: err })
+    }
+  })
+})
+
+
 
 const PORT = process.env.PORT
 const url = process.env.CONNECTION_URL.replace('<password>', process.env.PASSWORD)

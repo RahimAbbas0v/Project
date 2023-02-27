@@ -42,6 +42,8 @@ import ProductViewPage from './Pages/ProductViewPage/ProductViewPage';
 import EditProductPage from './Pages/EditProductPage/EditProductPage';
 import CustomerEdit from './Pages/CustomersEdit/CustomersEdit';
 import UserView from './Pages/UserViewPage/UserViewPage'
+import Reservations from './Pages/Reservations/Reservations';
+import Requests from "./Pages/ContactRequests/Requests"
 let persistor = persistStore(store)
 const router = createBrowserRouter([
   {
@@ -77,6 +79,10 @@ const router = createBrowserRouter([
         element: <Shop />,
       },
       {
+        path: "/details",
+        element: <Details />,
+      },
+       {
         path: "/details",
         element: <Details />,
       },
@@ -130,6 +136,10 @@ const router = createBrowserRouter([
         element: <Customers />,
       },
       {
+        path: "/Admin/reservations",
+        element: <Reservations />,
+      },
+      {
         path: "/Admin/orders",
         element: <Orders />,
       },
@@ -140,6 +150,10 @@ const router = createBrowserRouter([
       {
         path: "/Admin/Addproducts",
         element: <AddPage/>,
+      },
+      {
+        path: "/Admin/requests",
+        element: <Requests/>,
       },
       {
         path: "/Admin/details",

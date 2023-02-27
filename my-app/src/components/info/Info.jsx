@@ -17,9 +17,57 @@ function Info() {
     Aos.init({duration:500})
   },[])
   const [user, setUser] = useState([])
+  
+  const [name, setName] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [date, setDate] = useState("");
+  const [clock, setClock] = useState("");
+  const [message, setMessage] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState('');
+
+  
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem('item')))
-  }, [])
+    setEmail(JSON.parse(window.localStorage.getItem("item")));
+  }, []);
+  const handleclock = (e) => {
+    setClock(e.target.value);
+  };
+  const handlemessage = (e) => {
+    setMessage(e.target.value);
+  };
+  const handlephone = (e) => {
+    setPhone(e.target.value);
+  };
+  const handlenamechange = (e) => {
+    setName(e.target.value);
+  };
+  const handlelastname = (e) => {
+    setLastname(e.target.value);
+  };
+  const handledate = (e) => {
+    setDate(e.target.value);
+  };
+  const handlesubmit = (e) => {
+    e.preventDefault()
+    if(email){
+
+      axios.post("http://localhost:4000/reservation", {
+        name:{
+         name:name,
+        lastname: lastname,
+        clock: clock,
+        date:date,
+        phone:phone,
+        message:message,
+        },
+        email:email.email
+
+      }).then()
+    }else{
+      alert("Login")
+    }
+  };
   return (
     <>
       
@@ -56,28 +104,7 @@ function Info() {
             </div>
 
         </div><div className="right">
-        <Formik
-            initialValues={{
-              name: "",
-              lastname: "",
-              date: "",
-              clock: "",
-              phone: "",
-              message: "",
-              email:"636g634f6f@gmail.com",
-            }}
-            onSubmit={(values, {resetForm}) => {
-              if(values.name=="" || values.lastname=="" || values.date=="" || values.clock=="" || values.phone=="" || values.message==""){
-                alert("Fulfid inputs")
-              }else{
-                axios.post("http://localhost:4000/reservation",values)
-                .then(res=>console.log(res.data))
-              }
-              resetForm()
-            }}
-          >
-            {(props) => (
-              <form onSubmit={props.handleSubmit} id="reservform">
+        <form id="reservform">
                 <h3>BOOK A TABLE</h3>
                 <div style={{ display: "flex" }}>
                   <div class="input-group mb-3" id="name" style={{color:"white"}}>
@@ -85,41 +112,32 @@ function Info() {
                      style={{color:"white"}}
                       type="text"
                       placeholder="First Name"
-                      onChange={props.handleChange}
-                      value={props.values.name}
                       name="name"
+                      onChange={handlenamechange}
                     />
                     <input
                      style={{color:"white"}}
                       type="text"
                       placeholder="Last Name"
-                      onChange={props.handleChange}
-                      value={props.values.lastname}
+                      onChange={handlelastname}
                       name="lastname"
                     />
                   </div>
                 </div>
                 <div  id="times">
                   <input
-                     style={{color:"white"}}
+                     style={{color:"white",}}
+                     id='dateinput'
                     type="date"
-                    onChange={props.handleChange}
-                    value={props.values.date}
+                    min="2023-03-04" max="2023-05-04"
+                    onChange={handledate}
                     name="date"
                   />
-                 <input
-                     style={{color:"white",display:"none"}}
-                    type="email"
-                    value={user.email}
-                    name="email"
-                  />
-                
                   <select
                   style={{color:"white"}}
                     class="form-select"
                     aria-label="Default select example"
-                    onChange={props.handleChange}
-                    value={props.values.clock}
+                    onChange={handleclock}
                     name="clock"
                   >
                     <option selected>12:00am</option>
@@ -156,8 +174,7 @@ function Info() {
                   style={{color:"white"}}
                     type="number"
                     placeholder="Phone"
-                    onChange={props.handleChange}
-                    value={props.values.phone}
+                    onChange={handlephone}
                     name="phone"
                   />
                 </div>
@@ -165,17 +182,14 @@ function Info() {
                 <input
                       type="text"
                       placeholder="Message"
-                      onChange={props.handleChange}
-                      value={props.values.message}
+                      onChange={handlemessage}
                       name="message"
                       style={{color:"white"}}
                     />
-                    <button type="submit">Appoitment</button>
+                    <button onClick={handlesubmit} >Appoitment</button>
                 </div>
                 
               </form>
-            )}
-          </Formik>
         </div>
       </div>
     </section>

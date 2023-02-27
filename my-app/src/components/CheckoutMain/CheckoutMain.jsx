@@ -5,6 +5,8 @@ import SpeakerNotesIcon from "@mui/icons-material/SpeakerNotes";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 import "./CheckoutMain.css";
+import {useSelector,useDispatch} from "react-redux/es/exports" ;
+import {AddToBasket} from "../../reducers/BasketSlice"
 function CheckoutMain() {
   const [data, setData] = useState([]);
   const [beef, setBeef] = useState([]);
@@ -19,6 +21,14 @@ function CheckoutMain() {
   useEffect(() => {
     axios.get("http://localhost:4000/datas").then((res) => setData(res.data));
   },[]);
+  const AddBasket=(product)=>{
+    dispatch(AddToBasket(product))
+}
+const basket=useSelector(state=>state.basket.value)
+const count=useSelector(state=>state.basket.count)
+const dispatch=useDispatch()
+const [user, setUser] = useState([])
+const [smShow, setSmShow] = useState(false);
   return (
     <section id="checkoutSection">
       <div className="headname" data-aos="fade-up" data-aos-delay={100} style={{width:"80%",textAlign:"center"}}>
@@ -47,7 +57,7 @@ function CheckoutMain() {
                       <p>
                         <span>${item.ProductPrice}</span>
                       </p>
-                      <button>Add to Cart</button>
+                      <button onClick={() => {user ?  AddBasket(item) : setSmShow(true) }}>Add to Cart</button>
                     </div>
                   </div>
                 ))
@@ -60,7 +70,7 @@ function CheckoutMain() {
                     <p>
                       <span>${item.ProductPrice}</span>
                     </p>
-                    <button>Add to Cart</button>
+                    <button onClick={() => {user ?  AddBasket(item) : setSmShow(true) }}>Add to Cart</button>
                   </div>
                 </div>
               ))}

@@ -25,7 +25,7 @@ const BasketSlice =createSlice(
                 } 
                 state.count+=1
                 toast.success(`${actions.payload.ProductName} add to basket`,{
-                    position:"bottom-left",
+                    position:"bottom-left",autoClose:"3000"
                 })
             },
             DeleteFromBasket:(state,actions)=>{

@@ -1,6 +1,7 @@
 import { Formik } from 'formik'
 import React from 'react'
 import "./Contactinfo.css"
+import axios from "axios"
 function ContactInfo() {
   return (
     <>
@@ -22,6 +23,13 @@ function ContactInfo() {
                   message: "",
                 }}
                 onSubmit={(values, {resetForm}) => {
+                  if(values.name=='' || values.email=="" || values.subject=="" || values.message==""){
+                    alert('fullfid All Inputs')
+                  }else{
+                    axios.post('http://localhost:4000/contacts',values)
+                    .then()
+                    alert("Ass Soon As We Contact With You")
+                  }
 
                   resetForm()
                 }}

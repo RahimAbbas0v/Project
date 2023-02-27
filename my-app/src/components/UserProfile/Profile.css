@@ -6,11 +6,11 @@
     padding-top: 5rem;
     padding-bottom: 5rem;
 }
-#textb{
+#textback{
     display: flex;
 }
 #profile{
-    width: 100%;   display: block !important;
+    width: 100%;   display: flex !important;
     height: auto;
     padding: 1.5rem;
     margin-top: 3rem;
@@ -39,6 +39,38 @@ line-height: 40px;
 font-size:47px ;
 letter-spacing: 0px;
 }
+#reservContainer{
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    max-height: 40rem;
+    overflow-x: auto;
+    background: rgb(238,174,202);
+    border: none;
+    outline: none;
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(196,155,99,1) 0%);
+}
+#reservTable{
+    border: none;
+    margin: auto;
+    width: 90%;
+    background-color: white;
+
+}
+@media only screen and (max-width: 1380px) {
+
+
+    #bg-brown1{
+        text-align: center;
+        margin: auto;
+        align-items: center;
+    }
+    #userimg{
+        padding-right: 1rem;
+    }
+    #bg-brown2 p{
+        padding-left:1rem;
+    }
+}
 @media only screen and (max-width: 900px) {
 
     #textb{
@@ -54,17 +86,39 @@ letter-spacing: 0px;
     }
 }
 
-@media only screen and (max-width: 410px) {
+@media only screen and (max-width: 500px) {
   #profile{
         width: 100%;
 }
     #bg-brown2{
-        width: 103% !important;
+        /* width: 103% !important;
         padding-right: 1rem !important;
         text-align: center !important;
         margin: auto;
         padding: .7rem;
+        align-items: center; */
+        display: flex !important;
+        justify-content: center;
         align-items: center;
+        width: auto !important;
+        padding-right: .6rem;
+        position: sticky;
+    }
+    #textback{
+        display: block;
+    }
+    #bg-brown1{
+        text-align: center;
+        margin: auto;
+        align-items: center;
+    }
+    #userimg{
+        width: 100% !important;
+        margin: auto;
+        padding-left: 1rem;
+    }
+    #bg-brown2 p{
+        padding-left: 2rem;
     }
 }
 
