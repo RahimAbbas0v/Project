@@ -410,6 +410,7 @@ app.delete("/reservation/:id", (req, res) => {
     }
   })
 })
+
 app.put("/reservation/:id", (req, res) => {
   const { id } = req.params
   reservation.findByIdAndUpdate(id, req.body, (err, doc) => {

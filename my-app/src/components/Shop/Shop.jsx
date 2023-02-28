@@ -41,7 +41,7 @@ function Products() {
   return (
     <>
       <section id="productsection">
-        <div id="headname" data-aos="fade-up" data-aos-delay="100">
+        <div id="headname" data-aos="fade-up" data-aos-delay="100"  data-aos-anchor="#trigger-top">
 
           <span>Discover</span>
           <h2>OUR PRODUCTS</h2>
@@ -119,9 +119,9 @@ function Products() {
           </button>
         </div>
         <div className="container" id="cakecontainer">
-          <div className="cards4">
+          <div className="cards8">
             {active == 1 ? (data.filter(x => x.Category == "Beef").slice(0, 6).map((item, index) => (
-              <div className="card4" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+              <div className="card8" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <img
                   src={item.ProductUrl}
                   alt=""
@@ -151,7 +151,7 @@ function Products() {
                 </div>
               </div>))) : null}
             {active == 3 ? (data.filter(x => x.Category == "Dessert").slice(0, 6).map((item, index) => (
-              <div className="card4" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
+              <div className="card8" key={index} data-aos="fade-up" data-aos-delay={index * 100}>
                 <img
                   src={item.ProductUrl}
                   alt=""
@@ -181,7 +181,7 @@ function Products() {
                 </div>
               </div>))) : null}
             {active == 2 ? (data.filter(x => x.Category == "Drink").slice(0, 6).map((item, index) => (
-              <div className="card4" key={index} data-aos="fade-up" data-aos-delay={index * 100} >
+              <div className="card8" key={index} data-aos="fade-up" data-aos-delay={index * 100} >
                 <img
                   src={item.ProductUrl}
                   alt=""
@@ -211,7 +211,7 @@ function Products() {
                 </div>
               </div>))) : null}
               {active==4 ? (data.filter(x=>x.Category=="Coffe").map((item,index)=>(
-          <div className="card3" key={index} data-aos="flip-right" data-aos-delay={index*100}>
+          <div className="card8" key={index} data-aos="fade-up" data-aos-delay={index*100}>
             <img
               src={item.ProductUrl}
               alt=""

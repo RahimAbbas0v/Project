@@ -53,7 +53,6 @@ const  handledelete=(_id)=>{
 <MDBTableBody>
   {
     data
-    .slice(-4)
     .map(item=>(
       <tr>
     <th scope='row'>{item._id}</th>

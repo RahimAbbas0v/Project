@@ -94,7 +94,7 @@ function SignUp() {
                     value={values.firstname}
                     placeholder="First Name"
                   />
-                  {errors.firstname && touched.lastname ? <div style={{ color: "red", fontSize: 12 }}>{errors.firstname}</div> : null}
+                  {errors.firstname && touched.firstname ? <div style={{ color: "red", fontSize: 12 }}>{errors.firstname}</div> : null}
                 </div>
                 <div>
                   <AccountCircleIcon id="nameicon" />

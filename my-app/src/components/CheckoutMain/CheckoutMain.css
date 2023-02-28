@@ -127,7 +127,7 @@
     position: absolute;
 }
 .productCategorys h4{
- padding-top:4rem;
+ padding-top:3rem;
  padding-bottom: 1rem;
     font-size: 19px;
     font-weight:400 ;
@@ -154,7 +154,6 @@
 }
 #blogh{
     padding-top:4rem;
-    padding-bottom: 4rem;
        font-size: 19px;
        font-weight:400 ;
        line-height:25.2px ;
@@ -164,11 +163,41 @@
 }
 .blogdiv3 {
     display: flex;
-    padding-top: 2rem;
     padding-bottom: .4rem;
     gap: 20px;
 }
-
+#selectForm{
+    padding-top: 1.5rem;
+}
+#selectItem{
+    color: white;
+    border: 1px solid white;
+    text-align: center;
+    height: .5rem;
+    width: 9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white !important;
+    min-height: 0 !important;
+}
+#checkoutSection label{
+    color:white !important;
+    text-align: center;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+#selectItem:hover{
+    color: white;
+    border: 1px solid #ffffff;
+    text-align: center;
+    height: .5rem;
+    min-height: 0 !important;
+}
+#menuitem{
+    color: black !important;
+}
 .blogside h4 {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 15px;

@@ -17,11 +17,12 @@ import Aos from "aos"
 import 'aos/dist/aos.css'
 import { duration } from "@mui/material";
 import CoffeSection from "../../components/DetailCoffeSection/CoffeSection"
-import { DeleteFromBasket, DecreaseItem, IncreaseItem } from "../../reducers/BasketSlice"
+import { DeleteFromBasket, DecreaseItem, IncreaseItem,clearCart } from "../../reducers/BasketSlice"
 import { useSelector, useDispatch } from "react-redux/es/exports"
 import axios from "axios";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
+import { useNavigate } from "react-router-dom";
 
 function Basket() {
   const data = {
@@ -52,10 +53,11 @@ function Basket() {
   useEffect(() => {
     Aos.init({ duration: 600 })
   }, [])
-
+const navigate=useNavigate()
   const [total, setTotal] = useState(0.0)
   const dispatch = useDispatch()
   const basket = useSelector(state => state.basket.value)
+  const CleanBasket=useSelector(state=>state.basket)
   const handledelete = (itemId) => {
     dispatch(DeleteFromBasket(itemId))
   }
@@ -73,7 +75,10 @@ function Basket() {
       axios.post('http://localhost:4000/orders', basket)
       .then(res => {
         alert("Payment accepted")
+        
+        navigate('/')
       })
+      dispatch(clearCart())
     }
     
   }

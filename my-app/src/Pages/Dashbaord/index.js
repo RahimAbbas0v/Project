@@ -205,6 +205,7 @@ const confirm2 = () => {
 <MDBTableBody>
   {
     data
+    .slice(-4)
     .map(item=>(
       <tr>
     <td>{item._id}</td>

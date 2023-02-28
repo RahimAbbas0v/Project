@@ -20,7 +20,7 @@ function Advantages() {
         <div className="container" id="advantages">
         
           <div className="cards">
-          <div className="card1" data-aos="fade-right" >
+          <div className="card1" data-aos="fade-right"  >
               <span id="iconspan">
                 <LibraryBooksIcon id="advantagesicon" />
               </span>
@@ -33,7 +33,7 @@ function Advantages() {
                 </p>
               </div>
             </div>
-            <div className="card1" data-aos="fade-right" data-aos-delay="100">
+            <div className="card1" data-aos="fade-right" data-aos-delay="100"  >
               <span id="iconspan">
                 <DepartureBoardIcon id="advantagesicon" />
               </span>
@@ -46,7 +46,7 @@ function Advantages() {
               </div>
             </div>
 
-          <div className="card1" data-aos="fade-right" data-aos-delay="200">
+          <div className="card1" data-aos="fade-right" data-aos-delay="200"  >
             <span id="iconspan">
               <EmojiFoodBeverageIcon id="advantagesicon" />
             </span>

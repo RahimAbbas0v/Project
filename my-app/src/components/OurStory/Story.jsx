@@ -18,7 +18,7 @@ function Story() {
         <div className="story">
           <div className="leftside"></div>
           <div className="rightside" >
-            <div className="discover" data-aos="fade-up">
+            <div className="discover" data-aos="fade-up"  data-aos-anchor="#trigger-top">
               <span>Discover</span>
               <h2>OUR STORY</h2>
               <p>

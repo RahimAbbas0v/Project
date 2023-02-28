@@ -54,16 +54,12 @@ const BasketSlice =createSlice(
                  }
                 }) 
              },
-            IncrementByUser:(state,actions,count)=>{
-                state.value.forEach((elem)=>{
-                    if(elem.data._id==actions.payload){
-                        elem.counter+=actions.payload.count
-                        state.count+=actions.payload.count
-                    }})
-                state.value=state.value+actions.payload
-            },
+            clearCart: (state) => {
+                state.value = [];
+                state.count=0
+              },
         }
     }
 )
-export const { AddToBasket,DeleteFromBasket,DecreaseItem,IncreaseItem,IncrementByUser,DecrementByUser} =BasketSlice.actions
+export const { AddToBasket,DeleteFromBasket,DecreaseItem,IncreaseItem,IncrementByUser,DecrementByUser,clearCart} =BasketSlice.actions
 export default BasketSlice.reducer

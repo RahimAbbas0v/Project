@@ -173,7 +173,7 @@ input[type="date"] {
 }
 #name{
     display: flex;
-    gap: 36.6px;
+    gap: 11.6px !important;
 }
 #name input:focus{
     outline: none;
@@ -184,7 +184,7 @@ input[type="date"] {
 }
 #name input{
     height: 3.3rem;
-    width: 44%;
+    width: 100% !important;
     background-color: transparent;
     outline: hidden;
     border: none;
@@ -205,6 +205,12 @@ input[type="date"] {
 #times select:focus{
     outline: none;
     
+}
+#PhoneInput{
+    width: 90% !important;
+}
+#btnInput{
+    width: 100%;
 }
 #times input{
     height: 3.3rem;

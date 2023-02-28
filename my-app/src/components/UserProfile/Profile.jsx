@@ -92,7 +92,7 @@ console.log(reserv);
                     <MDBCardImage
                       style={{ width: '180px', borderRadius: '10px' }}
                       id='userimg'
-                      src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-profiles/avatar-1.webp'
+                      src='https://freesvg.org/img/abstract-user-flat-4.png'
                       alt='Generic placeholder image'
                       fluid />
                   </div>
@@ -123,11 +123,12 @@ console.log(reserv);
       </MDBContainer>
     </div>
     <TableContainer component={Paper} id="reservContainer">
+    <h3 id='MyReservs'>MyReservations</h3>
       <Table sx={{ minWidth: 700 }} aria-label="customized table" id="reservTable">
         <TableHead>
           <TableRow>
-            <StyledTableCell align='center'>First Name</StyledTableCell>
-            <StyledTableCell align='center'>Last Name</StyledTableCell>
+            <StyledTableCell align='center'>Email</StyledTableCell>
+            <StyledTableCell align='center'>Name</StyledTableCell>
             <StyledTableCell align='center'>Phone Number</StyledTableCell>
             <StyledTableCell align='center'>Date</StyledTableCell>
             <StyledTableCell align='center'>Clock</StyledTableCell>
@@ -144,10 +145,10 @@ console.log(reserv);
                 .map(item=>(
             <StyledTableRow >
               <StyledTableCell align='center'>{item.email}</StyledTableCell>
-              <StyledTableCell align='center'>{item._id}</StyledTableCell>
               {
                 item.name.map((elem)=>(
                   <>
+                  <StyledTableCell align='center'>{elem.name}{ '   '} {elem.lastname}</StyledTableCell>
 <StyledTableCell align='center'>+{elem.phone}</StyledTableCell>
               <StyledTableCell align='center'>{elem.date}</StyledTableCell>
               <StyledTableCell align='center'>{elem.clock}</StyledTableCell>

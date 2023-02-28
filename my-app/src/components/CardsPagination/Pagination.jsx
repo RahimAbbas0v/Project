@@ -105,7 +105,7 @@ function PaginationComponent() {
 
   return (
     <>
-    <div id="paginationpart" style={{backgroundColor:" black"}}>
+    <div id="paginationpart" >
 
     
       {renderData(currentItems)}

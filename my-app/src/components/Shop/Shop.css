@@ -48,6 +48,13 @@
     justify-content: center;
 
 }
+.cards8{
+    width: 85%;
+    margin: auto;
+}
+.card8 button{
+    text-align: center;
+}
 .buttons button{
     border: 2px solid rgb(196, 155, 99);
     text-align: center;

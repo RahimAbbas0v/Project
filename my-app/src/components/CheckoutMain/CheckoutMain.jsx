@@ -7,11 +7,26 @@ import Stack from "@mui/material/Stack";
 import "./CheckoutMain.css";
 import {useSelector,useDispatch} from "react-redux/es/exports" ;
 import {AddToBasket} from "../../reducers/BasketSlice"
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormHelperText from '@mui/material/FormHelperText';
+import FormControl from '@mui/material/FormControl';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 function CheckoutMain() {
   const [data, setData] = useState([]);
   const [beef, setBeef] = useState([]);
   const [search, setSearch] = useState([]);
-  const [sort, setSort] = useState(false);
+  const [sort, setSort] = useState(0);
+  const [user, setUser] = useState([])
+  const [age, setAge] = React.useState('');
+  const handleChange = (event: SelectChangeEvent) => {
+    setAge(event.target.value);
+  };
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem('item')))
+  }, [])
   const handlesearch = (value) => {
     const searched = data.filter((x) =>
       x.ProductName.toLowerCase().includes(value.toLowerCase())
@@ -24,16 +39,35 @@ function CheckoutMain() {
   const AddBasket=(product)=>{
     dispatch(AddToBasket(product))
 }
+const handlesortLowToHigh=()=>{
+  setData(data.sort((a,b)=>a.ProductPrice-b.ProductPrice))
+}
+
+const handlesortHighToLow=()=>{
+  setData(data.sort((a,b)=>b.ProductPrice-a.ProductPrice))
+}
+
+const handlesortAtoZ=()=>{
+  setData(data.sort((a,b)=>a.ProductName.localeCompare(b.ProductName)))
+}
+
+const handlesortZtoA=()=>{
+  setData(data.sort((a,b)=>b.ProductName.localeCompare(a.ProductName)))
+}
+
+const handlesortnews=()=>{
+  setData(data.slice(-15))
+}
+
 const basket=useSelector(state=>state.basket.value)
 const count=useSelector(state=>state.basket.count)
 const dispatch=useDispatch()
-const [user, setUser] = useState([])
 const [smShow, setSmShow] = useState(false);
   return (
     <section id="checkoutSection">
       <div className="headname" data-aos="fade-up" data-aos-delay={100} style={{width:"80%",textAlign:"center"}}>
         <span>Discover</span>
-        <h2>BEST COFFEE SELLERS</h2>
+        <h2>BEST PRODUCT SELLERS</h2>
         <p>
           Far far away, behind the word mountains, far from the countries
           Vokalia and Consonantia, there live the blind texts.
@@ -41,7 +75,7 @@ const [smShow, setSmShow] = useState(false);
       </div>
       <div className="container" id="checkoutcontainer">
         <div className="cards4" >
-          {sort == false
+          {sort == 0
             ? data
                 .filter((elem) =>
                   search == ""
@@ -86,7 +120,27 @@ const [smShow, setSmShow] = useState(false);
               id="search"
             />
           </div>
-         
+          <div>
+      <FormControl sx={{ m: 1, minWidth: 120 }} id="selectForm">
+        <Select
+        id='selectItem'
+          value={age}
+          onChange={handleChange}
+          displayEmpty
+          inputProps={{ 'aria-label': 'Without label' }}
+        >
+          <MenuItem value="" id='menuitem'>
+            <em>Sort</em>
+          </MenuItem>
+          <MenuItem  id='menuitem' value={10} onClick={handlesortLowToHigh}> Price : Low To High</MenuItem>
+          <MenuItem  id='menuitem' value={20} onClick={handlesortHighToLow}> Price : High To Low</MenuItem>
+          <MenuItem   id='menuitem'value={30} onClick={handlesortAtoZ}>A - Z</MenuItem>
+          <MenuItem   id='menuitem'value={40} onClick={handlesortZtoA}>Z - A</MenuItem>
+          <MenuItem   id='menuitem'value={50} onClick={handlesortnews}>New Products</MenuItem>
+
+        </Select>
+      </FormControl>
+    </div>
           <div className="productCategorys">
             <h4>Categories</h4>
 
