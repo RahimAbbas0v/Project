@@ -53,7 +53,7 @@ function Products() {
             className={active === 1 ? "activebtn" : ''}
           >
             <Link
-              to="/"
+              to="/menu"
               id="link"
               style={{
                 color: active === 1 ? "black" : "",
@@ -69,7 +69,7 @@ function Products() {
             className={active == 2 ? "activebtn" : ''}
           >
             <Link
-              to="/"
+              to="/menu"
               id="link"
               style={{
                 color: active == 2 ? "black" : "",
@@ -85,7 +85,7 @@ function Products() {
             className={active == 3 ? "activebtn" : ''}
           >
             <Link
-              to="/"
+              to="/menu"
               id="link"
               style={{
                 color: active == 3 ? "black" : "",
