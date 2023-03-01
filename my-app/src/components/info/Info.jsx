@@ -34,9 +34,8 @@ const SignupSchema = Yup.object().shape({
     .max(30, 'Too Long!')
     .required('Phone Number Is Empty')
     .matches(/994(40|5[015]|60|7[07])\d{7}/, "Phone Number is not correct"),
-    message: Yup.string()
+  message: Yup.string()
     .required('Message Is Empty')
-    .matches(/994(40|5[015]|60|7[07])\d{7}/, "Phone Number is not correct"),
 });
 
 function Info() {
@@ -93,7 +92,6 @@ function Info() {
                 phone: "",
                 message: "",
               }}
-            validationSchema={SignupSchema}
               onSubmit={(values, { resetForm }) => {
 
                 if (email) {
@@ -126,26 +124,26 @@ function Info() {
                   <h3>BOOK A TABLE</h3>
                   <div style={{ display: "flex" }}>
                     <div class="input-group mb-3" id="name" style={{ color: "white" }}>
-<div style={{width:"47%"}}>
-                      <input
-                        style={{ color: "white" }}
-                        type="text"
-                        placeholder="First Name"
-                        onChange={props.handleChange}
-                        value={props.values.name}
-                        name="name"
-                      />
-                          {props.errors.name && <div style={{ color: "red", fontSize: 12, }}>{props.errors.name}</div>}</div>
-<div style={{width:"47%"}}>
-                      <input
-                        style={{ color: "white" }}
-                        type="text"
-                        placeholder="Last Name"
-                        onChange={props.handleChange}
-                        value={props.values.lastname}
-                        name="lastname"
-                      />
-                          {props.errors.lastname && <div style={{ color: "red", fontSize: 12, }}>{props.errors.lastname}</div>}</div>
+                      <div style={{ width: "47%" }}>
+                        <input
+                          style={{ color: "white" }}
+                          type="text"
+                          placeholder="First Name"
+                          onChange={props.handleChange}
+                          value={props.values.name}
+                          name="name"
+                        />
+                     </div>
+                      <div style={{ width: "47%" }}>
+                        <input
+                          style={{ color: "white" }}
+                          type="text"
+                          placeholder="Last Name"
+                          onChange={props.handleChange}
+                          value={props.values.lastname}
+                          name="lastname"
+                        />
+                        </div>
 
                     </div>
                   </div>
@@ -197,30 +195,30 @@ function Info() {
                       <option value="01:00pm" style={{ color: "black" }}>21:30am</option>
 
                     </select>
-                    <div style={{display:"block"}}>
-                    <input
-                      style={{ color: "white" }}
-                      type="number"
-                      placeholder="Phone"
-                      onChange={props.handleChange}
-                      id="PhoneInput"
-                      value={props.values.phone}
-                      name="phone"
-                    />
-                  {props.errors.phone && <div style={{ color: "red", fontSize: 12 }}>{props.errors.phone}</div>}</div>
+                    <div style={{ display: "block" }}>
+                      <input
+                        style={{ color: "white" }}
+                        type="number"
+                        placeholder="Phone"
+                        onChange={props.handleChange}
+                        id="PhoneInput"
+                        value={props.values.phone}
+                        name="phone"
+                      />
+                      {props.errors.phone && <div style={{ color: "red", fontSize: 12 }}>{props.errors.phone}</div>}</div>
                   </div>
                   <div className="submit" >
-                    <div style={{display:"block",width:"43%"}} >
-                    <input
-                      type="text"
-                      id='btnInput'
-                      placeholder="Message"
-                      onChange={props.handleChange}
-                      value={props.values.message}
-                      name="message"
-                      style={{ color: "white" }}
-                    />
-                          {props.errors.message && <div style={{ color: "red", fontSize: 12, }}>{props.errors.message}</div>}</div>
+                    <div style={{ display: "block", width: "43%" }} >
+                      <input
+                        type="text"
+                        id='btnInput'
+                        placeholder="Message"
+                        onChange={props.handleChange}
+                        value={props.values.message}
+                        name="message"
+                        style={{ color: "white" }}
+                      />
+                     </div>
 
                     <button type="submit">Appoitment</button>
                   </div>
@@ -228,92 +226,6 @@ function Info() {
                 </form>
               )}
             </Formik>
-            {/* <form id="reservform">
-                <h3>BOOK A TABLE</h3>
-                <div style={{ display: "flex" }}>
-                  <div class="input-group mb-3" id="name" style={{color:"white"}}>
-                    <input
-                     style={{color:"white"}}
-                      type="text"
-                      placeholder="First Name"
-                      name="name"
-                      onChange={handlenamechange}
-                    />
-                    <input
-                     style={{color:"white"}}
-                      type="text"
-                      placeholder="Last Name"
-                      onChange={handlelastname}
-                      name="lastname"
-                    />
-                  </div>
-                </div>
-                <div  id="times">
-                  <input
-                     style={{color:"white",}}
-                     id='dateinput'
-                    type="date"
-                    min="2023-03-04" max="2023-05-04"
-                    onChange={handledate}
-                    name="date"
-                  />
-                  <select
-                  style={{color:"white"}}
-                    class="form-select"
-                    aria-label="Default select example"
-                    onChange={handleclock}
-                    name="clock"
-                  >
-                    <option selected>12:00am</option>
-                  <option value="12:00am" style={{color:"black"}}>12:00am</option>
-                  <option value="12:30am" style={{color:"black"}}>12:30am</option>
-                  <option value="13:00am" style={{color:"black"}}>13:00am</option>
-                  <option value="13:30am" style={{color:"black"}}>13:30am</option>
-                  <option value="14:00am" style={{color:"black"}}>14:00am</option>
-                  <option value="14:30am" style={{color:"black"}}>14:30am</option>
-                  <option value="15:00am" style={{color:"black"}}>15:00am</option>
-                  <option value="15:30am" style={{color:"black"}}>15:30am</option>
-                  <option value="16:00am" style={{color:"black"}}>16:00am</option>
-                  <option value="16:30am" style={{color:"black"}}>16:30am</option>
-                  <option value="17:00am" style={{color:"black"}}>17:00am</option>
-                  <option value="17:30am" style={{color:"black"}}>17:30am</option>
-                  <option value="18:00am" style={{color:"black"}}>18:00am</option>
-                  <option value="18:30am" style={{color:"black"}}>18:30am</option>
-                  <option value="19:00am" style={{color:"black"}}>19:00am</option>
-                  <option value="19:30am" style={{color:"black"}}>19:30am</option>
-                  <option value="20:00am" style={{color:"black"}}>20:00am</option>
-                  <option value="20:30am" style={{color:"black"}}>20:30am</option>
-                  <option value="21:00am" style={{color:"black"}}>21:00am</option>
-                  <option value="21:30am" style={{color:"black"}}>21:30am</option>
-                  <option value="22:00am" style={{color:"black"}}>18:30am</option>
-                  <option value="22:30am" style={{color:"black"}}>19:00am</option>
-                  <option value="23:00am" style={{color:"black"}}>19:30am</option>
-                  <option value="23:30am" style={{color:"black"}}>20:00am</option>
-                  <option value="00:00pm" style={{color:"black"}}>20:30am</option>
-                  <option value="00:30pm" style={{color:"black"}}>21:00am</option>
-                  <option value="01:00pm" style={{color:"black"}}>21:30am</option>
-
-                  </select>
-                  <input
-                  style={{color:"white"}}
-                    type="number"
-                    placeholder="Phone"
-                    onChange={handlephone}
-                    name="phone"
-                  />
-                </div>
-                <div className="submit">
-                <input
-                      type="text"
-                      placeholder="Message"
-                      onChange={handlemessage}
-                      name="message"
-                      style={{color:"white"}}
-                    />
-                    <button type="reset" onClick={handlesubmit} >Appoitment</button>
-                </div>
-                
-              </form> */}
           </div>
         </div>
       </section>
