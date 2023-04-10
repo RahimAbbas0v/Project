@@ -146,7 +146,7 @@ const navigate=useNavigate()
               <p style={{ color: "rgb(199,155,99)", paddingLeft: ".5rem" }}>${(basket.reduce((total, item) => total + (item.data.ProductPrice * item.counter), 0) - 3).toFixed(2)}</p>
             </div>
           </div>
-          <div style={{ justifyContent: "center", textAlign: "center" }}>  <MDBBtn onClick={toggleShow} id="btn2">LAUNCH DEMO MODAL</MDBBtn></div>
+          <div style={{ justifyContent: "center", textAlign: "center" }}>  <MDBBtn onClick={toggleShow} id="btn2">BUY</MDBBtn></div>
           <MDBModal show={basicModal} setShow={setBasicModal} >
             <MDBModalDialog>
               <MDBModalContent>
