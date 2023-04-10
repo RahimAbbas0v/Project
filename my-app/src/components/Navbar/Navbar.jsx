@@ -47,7 +47,6 @@ function Navbar({ history }) {
         <input type="checkbox" id="toggler" />
         <label htmlFor="toggler">
           <MenuIcon />
-          MENU
         </label>
         <div className="menu">
           <ul className="list">
