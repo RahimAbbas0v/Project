@@ -50,7 +50,7 @@ app.post("/datas", (req, res) => {
     ProductInfo: req.body.ProductInfo,
     ProductPrice: req.body.ProductPrice,
     ProductUrl:req.body.ProductUrl,
-    Category:req.body.Category,
+    Category:req.body.Category
   });
   data.save();
   res.send("Done");
@@ -229,7 +229,7 @@ app.post("/forgot-password", async (req, res) => {
     const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
       expiresIn: "5m",
     });
-    const link = `http://localhost:4000/reset-password/${oldUser._id}/${token}`;
+    const link = `https://projectewtwtregsdfg.onrender.com/reset-password/${oldUser._id}/${token}`;
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
