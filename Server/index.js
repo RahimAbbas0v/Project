@@ -13,7 +13,7 @@ dotenv.config()
 const { Schema } = mongoose
 
 
-
+dotenv.config()
 const app = express()
 app.use(cors())
 app.use(bodyParser.json())
@@ -22,84 +22,147 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", (req, res) => {
   res.send("<h1>Admin Panel</h1>")
 })
-
-const datasSchems = new Schema({
-  ProductName: { type: String, required: true },
-  ProductInfo: { type: String, required: true },
-  ProductPrice: { type: Number, required: true },
-  ProductUrl: { type: String, required: true },
-  Category: { type: String, required: true },
-
-
-}, {
-  timestamps: true
-})
-
+const datasSchems = new Schema(
+  {
+    ProductName: { type: String, required: true },
+    ProductInfo: { type: String, required: true },
+    ProductPrice: { type: Number, required: true },
+    ProductUrl: { type: String, required: true },
+    Category: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 const datas = mongoose.model('datas', datasSchems)
-
-
-
+//!get
 app.get("/datas", (req, res) => {
-  datas.find({}, (err, docs) => {
-    if (!err) {
-      res.send(docs)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-
-app.get("/datas/:id", (req, res) => {
-  const { id } = req.params
-  datas.findById(id, (err, doc) => {
-    if (!err) {
-      if (doc) {
-        res.send(doc)
-      } else {
-        res.status(404).json({ message: "Not Found" })
-      }
-    } else {
-      res.status(500).json({ message: err })
-    }
-  })
-})
-
-
+  datas.find()
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!post
 app.post("/datas", (req, res) => {
   const data = new datas({
-    ProductName: req.body.ProductName,
-    ProductInfo: req.body.ProductInfo,
-    ProductPrice: req.body.ProductPrice,
-    ProductUrl: req.body.ProductUrl,
-    Category: req.body.Category,
-  })
-  data.save()
-  res.send("Added")
-})
+    image: req.body.image,
+    name: req.body.name,
+    price: req.body.price,
+  });
+  data.save();
+  res.send("Done");
+});
+//!id
+app.get("/datas/:id", (req, res) => {
+  const { id } = req.params;
+  datas.findById(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!delete
 app.delete("/datas/:id", (req, res) => {
-  const { id } = req.params
-  datas.findByIdAndDelete(id, (err, doc) => {
-    if (!err) {
-      res.send(doc)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
+  const { id } = req.params;
+  datas.findByIdAndDelete(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!put
 app.put("/datas/:id", (req, res) => {
-  const { id } = req.params
-  datas.findByIdAndUpdate(id, req.body, (err, doc) => {
-    if (!err) {
-      res.status(200).json({message:"Product Uptaded"})
-    }else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
+  const { id } = req.params;
+  datas.findByIdAndUpdate(id, req.body)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
 
 
 require("./UserDetails")
 const User = mongoose.model("UserInfo")
+
+
+
+
+
+app.get("/userData", (req, res) => {
+  User.find()
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!id
+app.get("/userData/:id", (req, res) => {
+  const { id } = req.params;
+  User.findById(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!delete
+app.delete("/userData/:id", (req, res) => {
+  const { id } = req.params;
+  User.findByIdAndDelete(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!put
+app.put("/userData/:id", (req, res) => {
+  const { id } = req.params;
+  User.findByIdAndUpdate(id, req.body)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!Login-register-resetPassword
+
+app.post("/userData", async (req, res) => {
+  const { token } = req.body;
+  try {
+    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
+      if (err) {
+        return "token expired";
+      }
+      return res;
+    });
+    console.log(user);
+    if (user == "token expired") {
+      return res.send({ status: "error", data: "token expired" });
+    }
+
+    const useremail = user.email;
+    User.findOne({ email: useremail })
+      .then((data) => {
+        res.send({ status: "ok", data: data });
+      })
+      .catch((error) => {
+        res.send({ status: "error", data: error });
+      });
+  } catch (error) { }
+});
 
 app.get("/register", (req, res) => {
   User.find({}, (err, docs) => {
@@ -151,74 +214,6 @@ app.post("/login-user", async (req, res) => {
   }
   res.json({ status: "error", error: "InvAlid Password" });
 });
-app.get("/userData", (req, res) => {
-  User.find({}, (err, docs) => {
-    if (!err) {
-      res.send(docs)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-app.delete("/userData/:id", (req, res) => {
-  const { id } = req.params
-  User.findByIdAndDelete(id, (err, doc) => {
-    if (!err) {
-      res.send(doc)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-app.put("/userData/:id", (req, res) => {
-  const { id } = req.params
-  User.findByIdAndUpdate(id, req.body, (err, doc) => {
-    if (!err) {
-      res.status(200).json({message:"Product Uptaded"})
-    }else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-app.get("/userData/:id", (req, res) => {
-  const { id } = req.params
-  User.findById(id, (err, doc) => {
-    if (!err) {
-      if (doc) {
-        res.send(doc)
-      } else {
-        res.status(404).json({ message: "Not Found" })
-      }
-    } else {
-      res.status(500).json({ message: err })
-    }
-  })
-})
-app.post("/userData", async (req, res) => {
-  const { token } = req.body;
-  try {
-    const user = jwt.verify(token, JWT_SECRET, (err, res) => {
-      if (err) {
-        return "token expired";
-      }
-      return res;
-    });
-    console.log(user);
-    if (user == "token expired") {
-      return res.send({ status: "error", data: "token expired" });
-    }
-
-    const useremail = user.email;
-    User.findOne({ email: useremail })
-      .then((data) => {
-        res.send({ status: "ok", data: data });
-      })
-      .catch((error) => {
-        res.send({ status: "error", data: error });
-      });
-  } catch (error) { }
-});
-
 
 
 app.post("/forgot-password", async (req, res) => {
@@ -303,204 +298,202 @@ app.post("/reset-password/:id/:token", async (req, res) => {
     res.json({ status: "Something Went Wrong" });
   }
 });
-const OrderSchema = new Schema({
-  basket:{type:Array,required:true},
-}, {
-  timestamps: true
-})
 
+const OrderSchema = new Schema(
+  {
+    basket:{type:Array,required:true},
+  },
+  { timestamps: true }
+);
 const Orders = mongoose.model('Orders', OrderSchema)
-
-
+//!get
 app.get("/orders", (req, res) => {
-  Orders.find({}, (err, docs) => {
-    if (!err) {
-      res.send(docs)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-app.get("/orders/:id", (req, res) => {
-  const { id } = req.params
-  Orders.findById(id, (err, doc) => {
-    if (!err) {
-      if (doc) {
-        res.send(doc)
-      } else {
-        res.status(404).json({ message: "Not Found" })
-      }
-    } else {
-      res.status(500).json({ message: err })
-    }
-  })
-})
-
-app.delete("/orders/:id", (req, res) => {
-  const { id } = req.params
-  Orders.findByIdAndDelete(id, (err, doc) => {
-    if (!err) {
-      res.send(doc)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
+  Orders.find()
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!post
 app.post("/orders", (req, res) => {
   const order = new Orders({
     basket:req.body,
-  })
-  order.save()
-  res.send("added")
-})
-
-
-const reservationSchema = new Schema({
-  name: { type: Array, required: true },
-  email:{type:String,required:true}
-}, {
-  timestamps: true
-})
+  });
+  order.save();
+  res.send("Done");
+});
+//!id
+app.get("/orders/:id", (req, res) => {
+  const { id } = req.params;
+  Orders.findById(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!delete
+app.delete("/orders/:id", (req, res) => {
+  const { id } = req.params;
+  Orders.findByIdAndDelete(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!put
+app.put("/orders/:id", (req, res) => {
+  const { id } = req.params;
+  Orders.findByIdAndUpdate(id, req.body)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+const reservationSchema = new Schema(
+  {
+    name: { type: Array, required: true },
+    email:{type:String,required:true}
+  },
+  { timestamps: true }
+);
 const reservation = mongoose.model('reserv', reservationSchema)
-
-
-
+//!get
 app.get("/reservation", (req, res) => {
-  reservation.find({}, (err, docs) => {
-    if (!err) {
-      res.send(docs)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-
-app.get("/reservation/:id", (req, res) => {
-  const { id } = req.params
-  reservation.findById(id, (err, doc) => {
-    if (!err) {
-      if (doc) {
-        res.send(doc)
-      } else {
-        res.status(404).json({ message: "Not Found" })
-      }
-    } else {
-      res.status(500).json({ message: err })
-    }
-  })
-})
-
-
+  reservation.find()
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!post
 app.post("/reservation", (req, res) => {
   const reserv = new reservation({
     name: req.body.name,
     email:req.body.email
-
-  })
-  reserv.save()
-  res.send("Added")
-})
+  });
+  reserv.save();
+  res.send("Done");
+});
+//!id
+app.get("/reservation/:id", (req, res) => {
+  const { id } = req.params;
+  reservation.findById(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!delete
 app.delete("/reservation/:id", (req, res) => {
-  const { id } = req.params
-  reservation.findByIdAndDelete(id, (err, doc) => {
-    if (!err) {
-      res.send(doc)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-
+  const { id } = req.params;
+  reservation.findByIdAndDelete(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!put
 app.put("/reservation/:id", (req, res) => {
-  const { id } = req.params
-  reservation.findByIdAndUpdate(id, req.body, (err, doc) => {
-    if (!err) {
-      res.status(200).json({message:"Product Uptaded"})
-    }else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
+  const { id } = req.params;
+  reservation.findByIdAndUpdate(id, req.body)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
 
-const contactsSchema = new Schema({
-  name: { type: String, required: true },
-  email:{type:String,required:true},
-  subject: { type: String, required: true },
-  message:{type:String,required:true},
-}, {
-  timestamps: true
-})
+
+
+
+
+const contactsSchema = new Schema(
+  {
+    name: { type: Array, required: true },
+      email:{type:String,required:true}
+  },
+  { timestamps: true }
+);
 const contacts = mongoose.model('contactRequest', contactsSchema)
-
+//!get
 app.get("/contacts", (req, res) => {
-  contacts.find({}, (err, docs) => {
-    if (!err) {
-      res.send(docs)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-
-app.get("/contacts/:id", (req, res) => {
-  const { id } = req.params
-  contacts.findById(id, (err, doc) => {
-    if (!err) {
-      if (doc) {
-        res.send(doc)
-      } else {
-        res.status(404).json({ message: "Not Found" })
-      }
-    } else {
-      res.status(500).json({ message: err })
-    }
-  })
-})
-
-
+  contacts.find()
+    .then((docs) => {
+      res.send(docs);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!post
 app.post("/contacts", (req, res) => {
   const contact = new contacts({
     name: req.body.name,
     email:req.body.email,
     subject: req.body.subject,
     message:req.body.message,
-
-
-  })
-  contact.save()
-  res.send("Added")
-})
+  });
+  contactc.save();
+  res.send("Done");
+});
+//!id
+app.get("/contacts/:id", (req, res) => {
+  const { id } = req.params;
+  contacts.findById(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!delete
 app.delete("/contacts/:id", (req, res) => {
-  const { id } = req.params
-  contacts.findByIdAndDelete(id, (err, doc) => {
-    if (!err) {
-      res.send(doc)
-    } else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
+  const { id } = req.params;
+  contacts.findByIdAndDelete(id)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
+//!put
 app.put("/contacts/:id", (req, res) => {
-  const { id } = req.params
-  contacts.findByIdAndUpdate(id, req.body, (err, doc) => {
-    if (!err) {
-      res.status(200).json({message:"Product Uptaded"})
-    }else {
-      res.status(404).json({ message: err })
-    }
-  })
-})
-
-
-
+  const { id } = req.params;
+  contacts.findByIdAndUpdate(id, req.body)
+    .then((doc) => {
+      res.send(doc);
+    })
+    .catch((error) => {
+      res.status(500).json({ error: message });
+    });
+});
 const PORT = process.env.PORT
 const url = process.env.CONNECTION_URL.replace('<password>', process.env.PASSWORD)
 mongoose.set('strictQuery', true)
-mongoose.connect(url, (err) => {
-  if (!err) {
-    console.log("DB connected");
+mongoose
+  .connect(url)
+  .then((succes) => {
     app.listen(PORT, () => {
-      console.log("Server Started");
-    })
-  }
-})
+      console.log("Start Server");
+    });
+  })
+  .catch((error) => {
+    console.log(error.message);
+  });
