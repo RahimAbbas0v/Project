@@ -46,9 +46,11 @@ app.get("/datas", (req, res) => {
 //!post
 app.post("/datas", (req, res) => {
   const data = new datas({
-    image: req.body.image,
-    name: req.body.name,
-    price: req.body.price,
+    ProductName: req.body.ProductName,
+    ProductInfo: req.body.ProductInfo,
+    ProductPrice: req.body.ProductPrice,
+    ProductUrl:req.body.ProductUrl,
+    Category:req.body.Category,
   });
   data.save();
   res.send("Done");
